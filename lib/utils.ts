@@ -9,6 +9,7 @@ import { siteConfig } from "@/config/site";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+const APP_TITLE_TEMPLATE = "%s - Abdul Malek";
 
 export function constructMetadata({
   title = siteConfig.name,
@@ -24,7 +25,10 @@ export function constructMetadata({
   noIndex?: boolean;
 } = {}): Metadata {
   return {
-    title,
+    title: {
+      default: title,
+      template: APP_TITLE_TEMPLATE,
+    },
     description,
     keywords: [
       "Next.js",
@@ -37,6 +41,22 @@ export function constructMetadata({
       "React Email",
       "Stripe",
     ],
+    alternates: {
+      canonical: "/",
+      languages: {
+        "en-US": "/en-US",
+        "de-DE": "/de-DE",
+      },
+    },
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: "default",
+      title,
+      // startUpImage: [],
+    },
+    formatDetection: {
+      telephone: false,
+    },
     authors: [
       {
         name: "zihadm654",

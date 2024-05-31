@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 
 import { fontHeading, fontSans, fontUrban } from "@/assets/fonts";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           >
             {children}
             <Analytics />
+            <SpeedInsights />
             <Toaster />
             <ModalProvider />
             <TailwindIndicator />
