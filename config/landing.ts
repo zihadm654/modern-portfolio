@@ -54,38 +54,38 @@ export const infos: InfoLdg[] = [
 
 export const features = [
   {
-    title: "Feature 1",
+    title: "Web App development",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+      "We'll build you a website that's so good, it'll make all the other websites jealous. Trust me, not kidding.",
     link: "/",
   },
   {
-    title: "Feature 2",
+    title: "We Design",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+      "Your website will be so beautiful, you'll want to frame it and hang it on your wall (but please don't).",
     link: "/",
   },
   {
-    title: "Feature 3",
+    title: "Developments and Hosting",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+      "Get your website out there in the world, where it belongs, with our lightning-fast deployment services.",
     link: "/",
   },
   {
-    title: "Feature 4",
+    title: "Maintencence",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+      "We keep your website running like a well-oiled machine. From optimizing performance to ensuring security, we've got you covered.",
     link: "/",
   },
   {
-    title: "Feature 5",
+    title: "Full-Stack Development",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+      "Take your website to the next level with our full-stack development services. We've got all the skills to make your vision a reality.",
   },
   {
-    title: "Feature 6",
+    title: "And everything else",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+      "Ecommerce, Landing pages, Back-end heavy, Dashboards. You name it, we've done it AND we'll do it for you.",
     link: "/",
   },
 ];

@@ -11,6 +11,8 @@ export const publicRoutes = [
   "/pricing",
   "/terms",
   "/privacy",
+  "/projects",
+  "/about",
 ];
 
 /**

@@ -1,18 +1,19 @@
 "use client";
 
-import { MainNavItem } from "@/types";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { MainNavItem } from "@/types";
+import { useSession } from "next-auth/react";
 
-import { Icons } from "@/components/shared/icons";
-import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
 import useScroll from "@/hooks/use-scroll";
 import { useSigninModal } from "@/hooks/use-signin-modal";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Icons } from "@/components/shared/icons";
+import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
 import { MainNav } from "./main-nav";
+import { ModeToggle } from "./mode-toggle";
 import { UserAccountNav } from "./user-account-nav";
 
 interface NavBarProps {
@@ -34,7 +35,7 @@ export function NavBar({
   const signInModal = useSigninModal();
   const { data: session, status } = useSession();
   const selectedLayout = usePathname();
-  const dashBoard = selectedLayout.startsWith("/dashboard");
+  // const dashBoard = selectedLayout.startsWith("/dashboard");
 
   return (
     <header
@@ -50,23 +51,10 @@ export function NavBar({
 
         <div className="flex items-center space-x-3">
           {rightElements}
-
+          <ModeToggle />
           {session ? (
             <>
-              {dashBoard ? (
-                <UserAccountNav user={session.user} />
-              ) : (
-                <Link href="/dashboard">
-                  <Button
-                    className="gap-2 px-4"
-                    variant="default"
-                    size="sm"
-                    rounded="full"
-                  >
-                    <span>Dashboard</span>
-                  </Button>
-                </Link>
-              )}
+              <UserAccountNav user={session.user} />
             </>
           ) : status === "unauthenticated" ? (
             <Button
@@ -79,15 +67,7 @@ export function NavBar({
               <span>Sign In</span>
               <Icons.arrowRight className="size-4" />
             </Button>
-          ) : (
-            <>
-              {dashBoard ? (
-                <Skeleton className="size-9 rounded-full" />
-              ) : (
-                <Skeleton className="h-9 w-24 rounded-full" />
-              )}
-            </>
-          )}
+          ) : null}
         </div>
       </MaxWidthWrapper>
     </header>

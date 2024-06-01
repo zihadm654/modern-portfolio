@@ -34,6 +34,7 @@ export type SiteConfig = {
   ogImage: string;
   mailSupport: string;
   links: {
+    linkedin: string;
     twitter: string;
     github: string;
   };
@@ -87,4 +88,4 @@ export type InfoLdg = {
   image: string;
   description: string;
   list: InfoList[];
-}
+};

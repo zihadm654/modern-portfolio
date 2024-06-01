@@ -27,7 +27,11 @@ const Cards: React.FC<IData> = ({ data }) => {
   const router = useRouter();
   if (!data) return null;
   return (
-    <Card onClick={() => router.push(`/projects/${data.id}`)} key={data.id}>
+    <Card
+      className="hover:cursor-pointer"
+      onClick={() => router.push(`/projects/${data.id}`)}
+      key={data.id}
+    >
       <CardContent>
         {data.img && (
           <AspectRatio className="overflow-hidden" ratio={16 / 9}>
@@ -50,26 +54,41 @@ const Cards: React.FC<IData> = ({ data }) => {
       <CardFooter className="flex flex-col items-start justify-between gap-2">
         <p>
           {data.role?.map((i) => (
-            <Button variant={"outline"} className="mr-1">
+            <Button key={i} variant={"outline"} className="mr-1">
               {i}
             </Button>
           ))}
         </p>
-        <div className="flex w-full items-center justify-between  gap-2">
-          <Link
-            className="flex items-center justify-center space-x-2 py-1 underline"
-            href={data.repo}
-          >
-            <Icons.gitHub className="size-6" />
-            <span>Source Code</span>
-          </Link>
-          <Link
-            className="flex items-center justify-center space-x-2 py-1 underline"
-            href={data.site}
-          >
-            <Share />
-            <span>Live site</span>
-          </Link>
+        <div
+          className="flex w-full items-center justify-between  gap-2 border-t
+border-muted"
+        >
+          <div className="-mb-5 flex gap-3 py-4 md:-mb-7">
+            <Button variant="secondary" size="sm" rounded="xl" className="px-4">
+              <Link
+                target="_blank"
+                rel="noreferrer"
+                href={data.repo}
+                className="flex items-center gap-2"
+              >
+                <span>Source code</span>
+                <Icons.gitHub className="size-4" />
+              </Link>
+            </Button>
+          </div>
+          <div className="-mb-5 flex gap-3 py-4 md:-mb-7">
+            <Button variant="secondary" size="sm" rounded="xl" className="px-4">
+              <Link
+                href={data.site}
+                className="flex items-center gap-2"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>Visit the site</span>
+                <Icons.arrowUpRight className="size-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </CardFooter>
     </Card>

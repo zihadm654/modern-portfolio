@@ -6,6 +6,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
+
 // import contactImg from '../public/assets/undraw_contact_us_re_4qqt.svg';
 
 function isInputNamedElement(
@@ -41,7 +43,7 @@ function ContactPage() {
     setState("ready");
   }
   return (
-    <>
+    <MaxWidthWrapper>
       <section className="contact__page">
         <div className="content">
           <div className="content__left">
@@ -65,7 +67,7 @@ function ContactPage() {
         {/* <ContactForm /> */}
         <div className="contact__container"></div>
       </section>
-    </>
+    </MaxWidthWrapper>
   );
 }
 

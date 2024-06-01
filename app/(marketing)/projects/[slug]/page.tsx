@@ -5,62 +5,61 @@ import { getProject } from "@/actions/getProjects";
 import { SiGithub } from "react-icons/si";
 import { VscLiveShare } from "react-icons/vsc";
 
+import { formatDate } from "@/lib/utils";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Button } from "@/components/ui/button";
+import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
+
 export default async function Page({ params }: { params: { slug: string } }) {
   const slug = params.slug;
   const data = await getProject(slug);
   console.log(data, "data");
   if (!data) return <div>Not found</div>;
   return (
-    <section className="case__details">
-      <div className="container">
-        <div className="case__study--left">
-          <div className="context links">
-            <p>Links</p>
-            <div className="button__links">
-              <Link className="github" href={data.repo}>
-                <h5>Source Code</h5>
-                <SiGithub />
-              </Link>
-              <Link className="livesite" href={data?.site}>
-                <h5>Live Site</h5>
-                <VscLiveShare />
-              </Link>
+    <MaxWidthWrapper>
+      <section className="py-4">
+        {data.img && (
+          <AspectRatio ratio={16 / 9}>
+            <Image
+              src={data.img}
+              alt={data.title}
+              fill
+              placeholder="blur"
+              sizes="(min-width: 808px) 50vw, 100vw"
+              style={{ objectFit: "cover" }}
+              blurDataURL={data.img}
+            />
+          </AspectRatio>
+        )}
+        <div className="flex items-center justify-between gap-3">
+          <div className="mt-4 py-4">
+            <div className="pb-2">
+              <h3 className="text-2xl font-semibold">{data.title}</h3>
+              <h5 className="font-semibold text-gray-600">
+                {formatDate(data.createdAt.toISOString())}
+              </h5>
+            </div>
+            <div className="py-3">
+              <p>{data.description}</p>
+            </div>
+            <div className="flex items-center justify-start gap-3">
+              <h5 className="py-3">Roles Played: </h5>
+              <p>
+                {data.role?.map((i) => (
+                  <Button key={i} variant={"outline"} className="mr-1">
+                    {i}
+                  </Button>
+                ))}
+              </p>
+            </div>
+            <div className="flex items-center justify-start gap-3">
+              <h5 className="py-3">Client: </h5>
+              <p>{data.client}</p>
             </div>
           </div>
-          <div className="context">
-            <p>My Role</p>
-            {/* {data?.role?.map((item, i) => (
-                <h5 key={i}>{item}</h5>
-              ))} */}
-          </div>
-          <div className="context">
-            <p>Client</p>
-            <h5>{data.client}</h5>
-          </div>
-          <div className="context">
-            <p>Year</p>
-            <h5>{data.time}</h5>
-          </div>
         </div>
-        <div className="case__study--right">
-          <div className="context">
-            <p>Case Study</p>
-            <h3>{data.title}</h3>
-          </div>
-          <div className="sub">
-            <h5>Project Description</h5>
-            <p>{data.description}</p>
-          </div>
-          <div className="sub">
-            <h5>Project Created Time</h5>
-            <p>{new Date(data.createdAt).toISOString().split("/")[0]}</p>
-          </div>
-        </div>
-      </div>
-      {data.img && (
-        <Image src={data.img} alt={data.img} height={500} width={500} />
-      )}
-    </section>
+      </section>
+    </MaxWidthWrapper>
   );
 }
 

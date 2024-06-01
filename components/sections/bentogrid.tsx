@@ -93,8 +93,7 @@ export default function BentoGrid() {
                   Secure by default
                 </h2>
                 <p className="text-muted-foreground">
-                  Provident fugit and vero voluptate. magnam magni doloribus
-                  dolores voluptates a sapiente nisi.
+                  Security and privacy are our top priorities.
                 </p>
               </div>
             </div>
@@ -190,8 +189,8 @@ export default function BentoGrid() {
                   Faster than light
                 </h2>
                 <p className="text-muted-foreground">
-                  Provident fugit vero voluptate. magnam magni doloribus dolores
-                  voluptates inventore nisi.
+                  Performance is topnotch and we are committed to it. Project
+                  will be SEO friendly
                 </p>
               </div>
             </div>
@@ -222,8 +221,8 @@ export default function BentoGrid() {
                     Faster than light
                   </h2>
                   <p className="text-muted-foreground">
-                    Provident fugit vero voluptate. Voluptates a sapiente
-                    inventore nisi.
+                    Every page and component is optimized for speed and SEO and
+                    it will faster by default
                   </p>
                 </div>
               </div>
@@ -307,8 +306,7 @@ export default function BentoGrid() {
                     Keep your loved ones safe
                   </h2>
                   <p className="text-muted-foreground">
-                    Voluptate. magnam magni doloribus dolores voluptates a
-                    sapiente.
+                    We are committed to protecting your privacy and your data.
                   </p>
                 </div>
               </div>

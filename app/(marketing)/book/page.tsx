@@ -1,15 +1,17 @@
-'use client';
+"use client";
 
-import { InlineWidget } from 'react-calendly';
+import { InlineWidget } from "react-calendly";
+
+import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
 const Book = () => {
   return (
-    <>
-      <div className='consultation'>
-        <h2>Book a meeting</h2>
-        <InlineWidget url='https://calendly.com/zihadm654/30min' />
+    <MaxWidthWrapper>
+      <div className="text-center">
+        <h2 className="text-2xl font-semibold">Book a meeting</h2>
+        <InlineWidget url="https://calendly.com/zihadm654/30min" />
       </div>
-    </>
+    </MaxWidthWrapper>
   );
 };
 

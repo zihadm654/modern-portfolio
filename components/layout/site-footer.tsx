@@ -1,5 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
+import { Linkedin } from "lucide-react";
 
 import { footerLinks, siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
@@ -60,15 +61,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             >
               Vercel
             </Link>
-            . Illustrations by{" "}
-            <Link
-              href="https://popsy.co"
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium underline underline-offset-4"
-            >
-              Popsy
-            </Link>
+            .
           </p>
 
           <div className="flex items-center gap-3">
@@ -79,6 +72,22 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
               className="font-medium underline underline-offset-4"
             >
               <Icons.gitHub className="size-5" />
+            </Link>
+            <Link
+              href={siteConfig.links.twitter}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
+              <Icons.twitter className="size-5" />
+            </Link>
+            <Link
+              href={siteConfig.links.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
+              <Linkedin className="size-5" />
             </Link>
             <ModeToggle />
           </div>

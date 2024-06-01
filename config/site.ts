@@ -10,17 +10,18 @@ export const siteConfig: SiteConfig = {
   url: site_url,
   ogImage: `${site_url}/og.jpg`,
   links: {
+    linkedin: "https://www.linkedin.com/in/zihadm654/",
     twitter: "https://twitter.com/zihadm654",
-    github: "https://github.com/zihadm654/next-saas-stripe-starter",
+    github: "https://github.com/zihadm654",
   },
-  mailSupport: "support@saas-starter.com",
+  mailSupport: "zihadm654@gmail.com",
 };
 
 export const footerLinks: SidebarNavItem[] = [
   {
     title: "Company",
     items: [
-      { title: "About", href: "#" },
+      { title: "About", href: "/about" },
       { title: "Enterprise", href: "#" },
       { title: "Terms", href: "/terms" },
       { title: "Privacy", href: "/privacy" },
