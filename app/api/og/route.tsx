@@ -29,7 +29,7 @@ export async function GET(req: Request) {
 
     const fontSize = heading.length > 80 ? "60px" : "80px";
 
-    const githubName = "zihadm654";
+    const githubName = "mickasmt";
 
     return new ImageResponse(
       (
@@ -54,7 +54,7 @@ export async function GET(req: Request) {
               color: "transparent",
             }}
           >
-            SaaS Starter
+            Abdul Malek
           </div>
 
           <div tw="flex flex-col flex-1 py-16">
@@ -123,7 +123,7 @@ export async function GET(req: Request) {
                 />
               </svg>
               <div tw="flex ml-2">
-                github.com/zihadm654/next-saas-stripe-starter
+                github.com/mickasmt/next-saas-stripe-starter
               </div>
             </div>
           </div>

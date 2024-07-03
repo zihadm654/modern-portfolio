@@ -1,12 +1,12 @@
 import { allPosts } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 
-import { BlogPosts } from "@/components/blog-posts";
 import { constructMetadata } from "@/lib/utils";
+import { BlogPosts } from "@/components/content/blog-posts";
 
 export const metadata = constructMetadata({
-  title: "Blog – SaaS Starter",
-  description: "Manage billing and your subscription plan.",
+  title: "Blog – Abdul Malek",
+  description: "Latest news and updates from Next Abdul Malek.",
 });
 
 export default async function BlogPage() {
@@ -16,9 +16,5 @@ export default async function BlogPage() {
       return compareDesc(new Date(a.date), new Date(b.date));
     });
 
-  return (
-    <main>
-      <BlogPosts posts={posts} />
-    </main>
-  );
+  return <BlogPosts posts={posts} />;
 }

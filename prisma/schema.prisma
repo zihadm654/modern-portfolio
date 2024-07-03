@@ -9,7 +9,10 @@ datasource db {
   provider     = "mongodb"
   url          = env("DATABASE_URL")
 }
-
+enum UserRole {
+  ADMIN
+  USER
+}
 model Account {
   id                String   @id @default(auto()) @map("_id") @db.ObjectId
   userId            String   @db.ObjectId
@@ -52,6 +55,7 @@ model User {
   image         String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
+  role          UserRole  @default(USER)
 
   accounts Account[]
   sessions Session[]
@@ -66,11 +70,10 @@ model User {
 
 model VerificationToken {
   id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  email   String
   token      String   @unique
   expires    DateTime
 
-  @@unique([email, token])
+  @@unique([id, token])
   @@map(name: "verification_tokens")
 }
 model Projects {
