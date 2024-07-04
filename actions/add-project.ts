@@ -1,28 +1,20 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { z } from "zod";
 
 import { prisma } from "@/lib/db";
+import { projectSchema } from "@/lib/validations/project";
 
-export const addProject = async (formData: FormData) => {
-  const title = formData.get("title");
-  const description = formData.get("description");
-  const repo = formData.get("repo");
-  const site = formData.get("site");
-  const time = formData.get("time");
-  const img = formData.get("img");
-  const client = formData.get("client");
-
-  await prisma.projects.create({
+export const addProject = async (data: z.infer<typeof projectSchema>) => {
+  const req = await prisma.projects.create({
     data: {
-      title: title as string,
-      description: description as string,
-      client: client as string,
-      repo: repo as string,
-      site: site as string,
-      time: time as string,
-      img: img as string,
+      ...data,
     },
   });
-  revalidatePath("/dashboard");
+  if (!req) return { message: "failed to create project" };
+  revalidatePath("/");
+  return {
+    message: "successfully created",
+  };
 };

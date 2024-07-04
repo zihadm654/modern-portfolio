@@ -52,9 +52,23 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 ))}
               </p>
             </div>
-            <div className="flex items-center justify-start gap-3">
+            <div className="flex items-center justify-start gap-5">
               <h5 className="py-3">Client: </h5>
               <p>{data.client}</p>
+            </div>
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center justify-start gap-3">
+                <h5 className="py-3">Souce code: </h5>
+                <Link className="font-bold underline" href={data.repo}>
+                  Github Repo
+                </Link>
+              </div>
+              <div className="flex items-center justify-start gap-3">
+                <h5 className="py-3">Live site: </h5>
+                <Link className="font-bold underline" href={data.site}>
+                  Site link
+                </Link>
+              </div>
             </div>
           </div>
         </div>

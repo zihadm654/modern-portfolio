@@ -33,7 +33,7 @@ const Cards: React.FC<IData> = ({ data }) => {
       key={data.id}
     >
       <CardContent>
-        {data.img && (
+        {data?.img && (
           <AspectRatio className="overflow-hidden" ratio={16 / 9}>
             <Image
               src={data.img}
