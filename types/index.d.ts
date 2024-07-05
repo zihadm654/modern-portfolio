@@ -89,3 +89,9 @@ export type InfoLdg = {
   description: string;
   list: InfoList[];
 };
+
+// compare plans
+export type ColumnType = string | boolean | null;
+export type PlansRow = { feature: string; tooltip?: string } & {
+  [key in (typeof plansColumns)[number]]: ColumnType;
+};

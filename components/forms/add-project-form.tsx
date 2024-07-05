@@ -1,11 +1,15 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
 import { addProject } from "@/actions/add-project";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { XIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
+import { UploadDropzone } from "@/lib/uploadthing";
 import { projectSchema } from "@/lib/validations/project";
 import { Button } from "@/components/ui/button";
 import {
@@ -71,6 +75,8 @@ const tags = [
 ] as const;
 
 export function Addproject() {
+  const [images, setImages] = useState<string[]>([]);
+
   const form = useForm<z.infer<typeof projectSchema>>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
@@ -89,8 +95,11 @@ export function Addproject() {
     const req = await addProject(data);
     req && toast(req.message);
     form.reset();
+    setImages([]);
   }
-
+  const handleDelete = (index: number) => {
+    setImages(images?.filter((_, i) => i !== index));
+  };
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 px-4">
@@ -129,8 +138,47 @@ export function Addproject() {
             <FormItem>
               <FormLabel>Image</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input
+                  type="hidden"
+                  placeholder="shadcn"
+                  {...field}
+                  value={images}
+                  defaultValue={field.name}
+                />
               </FormControl>
+              {images.length > 0 ? (
+                <div className="flex gap-5">
+                  {images?.map((image, index) => (
+                    <div key={index} className="relative size-[100px]">
+                      <Image
+                        height={100}
+                        width={100}
+                        src={image}
+                        alt="Product Image"
+                        className="size-full rounded-lg border object-cover"
+                      />
+
+                      <button
+                        onClick={() => handleDelete(index)}
+                        type="button"
+                        className="absolute -right-3 -top-3 rounded-lg bg-red-500 p-2 text-white"
+                      >
+                        <XIcon className="size-3" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <UploadDropzone
+                  endpoint="imageUploader"
+                  onClientUploadComplete={(res) => {
+                    setImages(res.map((r) => r.url));
+                  }}
+                  onUploadError={() => {
+                    alert("Something went wrong");
+                  }}
+                />
+              )}
               <FormMessage />
             </FormItem>
           )}
@@ -187,96 +235,98 @@ export function Addproject() {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="role"
-          render={() => (
-            <FormItem>
-              <div className="mb-4">
-                <FormLabel className="text-base">Roles</FormLabel>
-              </div>
-              {roles?.map((item) => (
-                <FormField
-                  key={item.id}
-                  control={form.control}
-                  name="role"
-                  render={({ field }) => {
-                    return (
-                      <FormItem
-                        key={item.id}
-                        className="flex flex-row items-start space-x-3 space-y-0"
-                      >
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value?.includes(item.id)}
-                            onCheckedChange={(checked) => {
-                              return checked
-                                ? field.onChange([...field.value, item.id])
-                                : field.onChange(
-                                    field.value?.filter(
-                                      (value) => value !== item.id,
-                                    ),
-                                  );
-                            }}
-                          />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          {item.label}
-                        </FormLabel>
-                      </FormItem>
-                    );
-                  }}
-                />
-              ))}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="tags"
-          render={() => (
-            <FormItem>
-              <div className="mb-4">
-                <FormLabel className="text-base">Tags</FormLabel>
-              </div>
-              {tags?.map((item) => (
-                <FormField
-                  key={item.id}
-                  control={form.control}
-                  name="tags"
-                  render={({ field }) => {
-                    return (
-                      <FormItem
-                        key={item.id}
-                        className="flex flex-row items-start space-x-3 space-y-0"
-                      >
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value?.includes(item.id)}
-                            onCheckedChange={(checked) => {
-                              return checked
-                                ? field.onChange([...field.value, item.id])
-                                : field.onChange(
-                                    field.value?.filter(
-                                      (value) => value !== item.id,
-                                    ),
-                                  );
-                            }}
-                          />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          {item.label}
-                        </FormLabel>
-                      </FormItem>
-                    );
-                  }}
-                />
-              ))}
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="flex items-start justify-between space-x-3">
+          <FormField
+            control={form.control}
+            name="role"
+            render={() => (
+              <FormItem>
+                <div className="mb-4">
+                  <FormLabel className="text-base">Roles</FormLabel>
+                </div>
+                {roles?.map((item) => (
+                  <FormField
+                    key={item.id}
+                    control={form.control}
+                    name="role"
+                    render={({ field }) => {
+                      return (
+                        <FormItem
+                          key={item.id}
+                          className="flex flex-row items-start space-x-3 space-y-0"
+                        >
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value?.includes(item.id)}
+                              onCheckedChange={(checked) => {
+                                return checked
+                                  ? field.onChange([...field.value, item.id])
+                                  : field.onChange(
+                                      field.value?.filter(
+                                        (value) => value !== item.id,
+                                      ),
+                                    );
+                              }}
+                            />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            {item.label}
+                          </FormLabel>
+                        </FormItem>
+                      );
+                    }}
+                  />
+                ))}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="tags"
+            render={() => (
+              <FormItem>
+                <div className="mb-4">
+                  <FormLabel className="text-base">Tags</FormLabel>
+                </div>
+                {tags?.map((item) => (
+                  <FormField
+                    key={item.id}
+                    control={form.control}
+                    name="tags"
+                    render={({ field }) => {
+                      return (
+                        <FormItem
+                          key={item.id}
+                          className="flex flex-row items-start space-x-3 space-y-0"
+                        >
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value?.includes(item.id)}
+                              onCheckedChange={(checked) => {
+                                return checked
+                                  ? field.onChange([...field.value, item.id])
+                                  : field.onChange(
+                                      field.value?.filter(
+                                        (value) => value !== item.id,
+                                      ),
+                                    );
+                              }}
+                            />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            {item.label}
+                          </FormLabel>
+                        </FormItem>
+                      );
+                    }}
+                  />
+                ))}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <Button type="submit">Submit</Button>
       </form>
     </Form>
