@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { addProject } from "@/actions/add-project";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -90,8 +90,9 @@ export function Addproject() {
       role: ["Reactjs", "html/css/js"],
     },
   });
-
+  console.log(images, "images");
   async function onSubmit(data: z.infer<typeof projectSchema>) {
+    data.img = images[0];
     const req = await addProject(data);
     req && toast(req.message);
     form.reset();
@@ -100,6 +101,13 @@ export function Addproject() {
   const handleDelete = (index: number) => {
     setImages(images?.filter((_, i) => i !== index));
   };
+  useEffect(() => {
+    form.setValue("img", images[0]);
+    const subscription = form.watch((value, { name, type }) =>
+      console.log(value, name, type),
+    );
+    return () => subscription.unsubscribe();
+  }, [form, images]);
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 px-4">
@@ -138,13 +146,7 @@ export function Addproject() {
             <FormItem>
               <FormLabel>Image</FormLabel>
               <FormControl>
-                <Input
-                  type="hidden"
-                  placeholder="shadcn"
-                  {...field}
-                  value={images}
-                  defaultValue={field.name}
-                />
+                <Input placeholder="image" {...field} value={images[0]} />
               </FormControl>
               {images.length > 0 ? (
                 <div className="flex gap-5">
@@ -158,13 +160,13 @@ export function Addproject() {
                         className="size-full rounded-lg border object-cover"
                       />
 
-                      <button
+                      <Button
                         onClick={() => handleDelete(index)}
                         type="button"
                         className="absolute -right-3 -top-3 rounded-lg bg-red-500 p-2 text-white"
                       >
                         <XIcon className="size-3" />
-                      </button>
+                      </Button>
                     </div>
                   ))}
                 </div>

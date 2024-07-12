@@ -42,8 +42,9 @@ const AboutPage = () => {
               "react",
               "html5",
               "javascript",
-              "framer-motion",
-              "scss",
+              "typescript",
+              "framer",
+              "sass",
               "css3",
               "firebase",
               "github",
@@ -52,10 +53,11 @@ const AboutPage = () => {
               "vercel",
               "visualstudiocode",
               "figma",
-              "tailwind",
+              "tailwindcss",
               "bootstrap",
               "prisma",
               "prettier",
+              "mongodb",
             ]}
           />
         </div>
