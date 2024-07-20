@@ -1,9 +1,7 @@
-"use client";
-
 // import ContactForm from '@/components/forms/ContactForm';
 // import { Button } from '../../src/utility/Button';
-import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
@@ -17,51 +15,24 @@ function isInputNamedElement(
 }
 
 function ContactPage() {
-  const [state, setState] = useState<string>();
-  async function handleOnSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    const formData: Record<string, string> = {};
-
-    Array.from(e.currentTarget.elements)
-      .filter(isInputNamedElement)
-      .forEach((field) => {
-        if (!field.name) return;
-        formData[field.name] = field.value;
-      });
-
-    setState("loading");
-
-    await fetch("/api/email", {
-      method: "POST",
-      body: JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-      }),
-    });
-
-    setState("ready");
-  }
   return (
     <MaxWidthWrapper>
-      <section className="contact__page">
+      <section className="py-10">
         <div className="content">
           <div className="content__left">
-            <h5>LET&apos;S TALK</h5>
-            <h2>Hello! We&apos;ve been waiting for you.</h2>
+            <h5 className="text-5xl">LET&apos;S TALK</h5>
+            <h2 className="py-2 text-2xl">
+              Hello! We&apos;ve been waiting for you.
+            </h2>
             <p>
               Fill in the form or{" "}
-              <a href="mailto:zihadm654@gmail.com">Send us an email</a>
+              <Link
+                className="text-gray-400 underline"
+                href="mailto:zihadm654@gmail.com"
+              >
+                Send us an email
+              </Link>
             </p>
-          </div>
-          <div className="content__img">
-            <Image
-              src="/assets/undraw_contact_us_re_4qqt.svg"
-              alt="contact img"
-              height={500}
-              width={500}
-              className="bg-cover"
-            />
           </div>
         </div>
         {/* <ContactForm /> */}

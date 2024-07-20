@@ -1,6 +1,7 @@
 "use client";
 
 import { useContext } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -56,7 +57,13 @@ export function NavBar({ scroll = false }: NavBarProps) {
       >
         <div className="flex gap-6 md:gap-10">
           <Link href="/" className="flex items-center space-x-2">
-            <Icons.logo />
+            <Image
+              src={"/logo.png"}
+              height={30}
+              width={30}
+              priority
+              alt="logo"
+            />
             <span className="font-urban text-xl font-bold">
               {siteConfig.name}
             </span>

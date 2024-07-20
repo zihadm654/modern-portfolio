@@ -16,9 +16,9 @@ export const BLOG_CATEGORIES: {
 ];
 
 export const BLOG_AUTHORS = {
-  mickasmt: {
-    name: "mickasmt",
-    image: "/_static/avatars/mickasmt.png",
+  zihadm654: {
+    name: "zihadm654",
+    image: "/_static/avatars/zihadm654.png",
     twitter: "miickasmt",
   },
   shadcn: {

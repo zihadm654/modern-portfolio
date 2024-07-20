@@ -29,7 +29,7 @@ export async function GET(req: Request) {
 
     const fontSize = heading.length > 80 ? "60px" : "80px";
 
-    const githubName = "mickasmt";
+    const githubName = "zihadm654";
 
     return new ImageResponse(
       (
@@ -123,7 +123,7 @@ export async function GET(req: Request) {
                 />
               </svg>
               <div tw="flex ml-2">
-                github.com/mickasmt/next-saas-stripe-starter
+                github.com/zihadm654/next-saas-stripe-starter
               </div>
             </div>
           </div>
