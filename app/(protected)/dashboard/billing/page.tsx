@@ -5,12 +5,11 @@ import { getUserSubscriptionPlan } from "@/lib/subscription";
 import { constructMetadata } from "@/lib/utils";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { DashboardHeader } from "@/components/dashboard/header";
-import { DashboardShell } from "@/components/dashboard/shell";
 import { BillingInfo } from "@/components/pricing/billing-info";
 import { Icons } from "@/components/shared/icons";
 
 export const metadata = constructMetadata({
-  title: "Billing – Abdul Malek",
+  title: "Billing – SaaS Starter",
   description: "Manage billing and your subscription plan.",
 });
 
@@ -25,7 +24,7 @@ export default async function BillingPage() {
   }
 
   return (
-    <DashboardShell>
+    <>
       <DashboardHeader
         heading="Billing"
         text="Manage billing and your subscription plan."
@@ -35,7 +34,7 @@ export default async function BillingPage() {
           <Icons.warning />
           <AlertTitle>This is a demo app.</AlertTitle>
           <AlertDescription className="text-balance">
-            Abdul Malek app is a demo app using a Stripe test environment. You
+            SaaS Starter app is a demo app using a Stripe test environment. You
             can find a list of test card numbers on the{" "}
             <a
               href="https://stripe.com/docs/testing#cards"
@@ -50,6 +49,6 @@ export default async function BillingPage() {
         </Alert>
         <BillingInfo userSubscriptionPlan={userSubscriptionPlan} />
       </div>
-    </DashboardShell>
+    </>
   );
 }

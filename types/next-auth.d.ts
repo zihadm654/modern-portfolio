@@ -2,7 +2,6 @@ import { UserRole } from "@prisma/client";
 import { User } from "next-auth";
 import { JWT } from "next-auth/jwt";
 
-type userId = string;
 export type ExtendedUser = User & {
   role: UserRole;
 };
@@ -10,13 +9,11 @@ export type ExtendedUser = User & {
 declare module "next-auth/jwt" {
   interface JWT {
     role: UserRole;
-    id: userId;
   }
 }
 
 declare module "next-auth" {
   interface Session {
     user: ExtendedUser;
-    id: userId;
   }
 }

@@ -54,7 +54,11 @@ export default async function BlogCategory({
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {articles.map((article, idx) => (
-        <BlogCard key={article._id} data={article} priority={idx <= 2} />
+        <BlogCard
+          key={article._id}
+          data={{ ...article, blurDataURL: "" }}
+          priority={idx <= 2}
+        />
       ))}
     </div>
   );

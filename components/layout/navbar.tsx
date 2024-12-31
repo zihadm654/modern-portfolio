@@ -1,13 +1,10 @@
 "use client";
 
 import { useContext } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-import { adminConfig } from "@/config/admin";
-import { dashboardConfig } from "@/config/dashboard";
 import { docsConfig } from "@/config/docs";
 import { marketingConfig } from "@/config/marketing";
 import { siteConfig } from "@/config/site";
@@ -20,7 +17,7 @@ import { ModalContext } from "@/components/modals/providers";
 import { Icons } from "@/components/shared/icons";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
-import { UserAccountNav } from "./user-account-nav";
+import BlurImage from "../shared/blur-image";
 
 interface NavBarProps {
   scroll?: boolean;
@@ -33,13 +30,10 @@ export function NavBar({ scroll = false }: NavBarProps) {
   const { setShowSignInModal } = useContext(ModalContext);
 
   const selectedLayout = useSelectedLayoutSegment();
-  const admin = selectedLayout === "admin";
-  const dashBoard = selectedLayout === "dashboard";
   const documentation = selectedLayout === "docs";
 
   const configMap = {
     docs: docsConfig.mainNav,
-    dashboard: dashboardConfig.mainNav,
   };
 
   const links =
@@ -56,14 +50,8 @@ export function NavBar({ scroll = false }: NavBarProps) {
         large={documentation}
       >
         <div className="flex gap-6 md:gap-10">
-          <Link href="/" className="flex items-center space-x-2">
-            <Image
-              src={"/logo.png"}
-              height={30}
-              width={30}
-              priority
-              alt="logo"
-            />
+          <Link href="/" className="flex items-center space-x-1.5">
+            <BlurImage src={"/logo.png"} alt="logo" width={40} height={40} />
             <span className="font-urban text-xl font-bold">
               {siteConfig.name}
             </span>
@@ -71,7 +59,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
 
           {links && links.length > 0 ? (
             <nav className="hidden gap-6 md:flex">
-              {(admin ? adminConfig.mainNav : links).map((item, index) => (
+              {links.map((item, index) => (
                 <Link
                   key={index}
                   href={item.disabled ? "#" : item.href}
@@ -115,42 +103,22 @@ export function NavBar({ scroll = false }: NavBarProps) {
           ) : null}
 
           {session ? (
-            <>
-              {dashBoard || admin ? (
-                <div className="flex items-center space-x-3">
-                  {dashBoard && session.user.role === "ADMIN" ? (
-                    <Link href="/admin" className="hidden md:block">
-                      <Button
-                        className="gap-2 px-4"
-                        variant="outline"
-                        size="sm"
-                        rounded="xl"
-                      >
-                        <span>Admin</span>
-                      </Button>
-                    </Link>
-                  ) : null}
-                  <UserAccountNav user={session.user} />
-                </div>
-              ) : (
-                <Link
-                  href={session.user.role === "ADMIN" ? "/admin" : "/dashboard"}
-                  className="hidden md:block"
-                >
-                  <Button
-                    className="gap-2 px-4"
-                    variant="default"
-                    size="sm"
-                    rounded="full"
-                  >
-                    <span>Dashboard</span>
-                  </Button>
-                </Link>
-              )}
-            </>
+            <Link
+              href={session.user.role === "ADMIN" ? "/admin" : "/dashboard"}
+              className="hidden md:block"
+            >
+              <Button
+                className="gap-2 px-5"
+                variant="default"
+                size="sm"
+                rounded="full"
+              >
+                <span>Dashboard</span>
+              </Button>
+            </Link>
           ) : status === "unauthenticated" ? (
             <Button
-              className="hidden gap-2 px-4 md:flex"
+              className="hidden gap-2 px-5 md:flex"
               variant="default"
               size="sm"
               rounded="full"
@@ -160,13 +128,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
               <Icons.arrowRight className="size-4" />
             </Button>
           ) : (
-            <div className="hidden lg:flex">
-              {dashBoard || admin ? (
-                <Skeleton className="size-9 rounded-full" />
-              ) : (
-                <Skeleton className="h-9 w-24 rounded-full" />
-              )}
-            </div>
+            <Skeleton className="hidden h-9 w-28 rounded-full lg:flex" />
           )}
         </div>
       </MaxWidthWrapper>

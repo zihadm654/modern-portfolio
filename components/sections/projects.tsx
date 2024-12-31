@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import { getProjects } from "@/actions/getProjects";
-import { Projects } from "@prisma/client";
+import { getProjects } from "@/actions/project";
+import { Project } from "@prisma/client";
 
 import Cards from "../Cards";
 import { HeaderSection } from "../shared/header-section";
@@ -19,7 +19,7 @@ const ProjectSection = async () => {
         />
         <Suspense fallback={<Skeleton />}>
           <div className="grid grid-cols-2 gap-4 py-4 max-md:grid-cols-1">
-            {data?.map((item: Projects) => <Cards key={item.id} data={item} />)}
+            {data?.map((item: Project) => <Cards key={item.id} data={item} />)}
           </div>
         </Suspense>
       </div>

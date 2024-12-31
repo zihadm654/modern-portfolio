@@ -1,13 +1,11 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Projects } from "@prisma/client";
+import { Project } from "@prisma/client";
 import { Share } from "lucide-react";
 
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -19,8 +17,10 @@ import {
 } from "@/components/ui/card";
 import { Icons } from "@/components/shared/icons";
 
+import BlurImage from "./shared/blur-image";
+
 interface IData {
-  data: Projects;
+  data: Project;
 }
 
 const Cards: React.FC<IData> = ({ data }) => {
@@ -28,23 +28,21 @@ const Cards: React.FC<IData> = ({ data }) => {
   if (!data) return null;
   return (
     <Card
-      className="hover:cursor-pointer"
+      className="py-4 hover:cursor-pointer"
       onClick={() => router.push(`/projects/${data.id}`)}
       key={data.id}
     >
       <CardContent>
-        {data?.img && (
-          <AspectRatio className="overflow-hidden" ratio={16 / 9}>
-            <Image
-              src={data.img}
-              alt={data.title}
-              fill
-              placeholder="blur"
-              sizes="(min-width: 808px) 50vw, 100vw"
-              style={{ objectFit: "cover" }}
-              blurDataURL={data.img}
-            />
-          </AspectRatio>
+        {data?.image && (
+          <BlurImage
+            src={data.image}
+            height={600}
+            width={400}
+            alt={data.title}
+            placeholder="blur"
+            blurDataURL={data.image}
+            className="aspect-video w-full rounded-md object-cover"
+          />
         )}
       </CardContent>
       <CardHeader>

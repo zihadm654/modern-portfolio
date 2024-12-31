@@ -1,8 +1,6 @@
 import Link from "next/link";
 
-import { env } from "@/env.mjs";
-import { siteConfig } from "@/config/site";
-import { cn, nFormatter } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Icons } from "@/components/shared/icons";
 
@@ -21,7 +19,9 @@ export default async function HeroLanding() {
           )}
           target="_blank"
         >
-          <span className="mr-3">🎉</span> Introducing on{" "}
+          <span className="mr-3">🎉</span>
+          <span className="hidden md:flex">Introducing&nbsp;</span> Next Auth
+          projects
           <Icons.twitter className="ml-2 size-3.5" />
         </Link>
         <h5>
@@ -74,6 +74,8 @@ export default async function HeroLanding() {
           </Link>
           <Link
             href={"/contact"}
+            target="_blank"
+            rel="noreferrer"
             className={cn(
               buttonVariants({
                 variant: "outline",

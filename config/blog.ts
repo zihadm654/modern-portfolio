@@ -6,7 +6,7 @@ export const BLOG_CATEGORIES: {
   {
     title: "News",
     slug: "news",
-    description: "Updates and announcements from Next Abdul Malek.",
+    description: "Updates and announcements from Next SaaS Starter.",
   },
   {
     title: "Education",
@@ -16,9 +16,9 @@ export const BLOG_CATEGORIES: {
 ];
 
 export const BLOG_AUTHORS = {
-  zihadm654: {
-    name: "zihadm654",
-    image: "/_static/avatars/zihadm654.png",
+  mickasmt: {
+    name: "mickasmt",
+    image: "/_static/avatars/mickasmt.png",
     twitter: "miickasmt",
   },
   shadcn: {

@@ -3,7 +3,7 @@ import * as z from "zod";
 export const projectSchema = z.object({
   title: z.string().min(3),
   description: z.string().min(3),
-  img: z.string().min(1),
+  image: z.string().min(1),
   time: z.string().min(1).max(32),
   client: z.string().min(1).max(32),
   repo: z.string().min(1),
@@ -11,3 +11,5 @@ export const projectSchema = z.object({
   tags: z.array(z.string().min(1).max(32)),
   role: z.array(z.string().min(1).max(32)),
 });
+
+export type TProject = z.infer<typeof projectSchema>;

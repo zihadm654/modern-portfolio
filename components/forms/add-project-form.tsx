@@ -1,16 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
-import { addProject } from "@/actions/add-project";
+import { useRouter } from "next/navigation";
+import { imageRemove } from "@/actions/imageRemove";
+import { addProject } from "@/actions/project";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { XIcon } from "lucide-react";
+import { Project } from "@prisma/client";
+import { Loader2, PencilLine, X, XIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
 
 import { UploadDropzone } from "@/lib/uploadthing";
-import { projectSchema } from "@/lib/validations/project";
+import { projectSchema, TProject } from "@/lib/validations/project";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -74,40 +76,64 @@ const tags = [
   },
 ] as const;
 
-export function Addproject() {
-  const [images, setImages] = useState<string[]>([]);
+interface AddProjectProps {
+  project?: Project | null;
+}
+export function Addproject({ project }: AddProjectProps) {
+  const [image, setImage] = useState<string>("");
+  const [imageKey, setImageKey] = useState<string>("");
+  const [loading, setLoading] = useState(false);
 
-  const form = useForm<z.infer<typeof projectSchema>>({
+  const form = useForm<TProject>({
     resolver: zodResolver(projectSchema),
-    defaultValues: {
+    defaultValues: project || {
       title: "",
-      img: "",
+      description: "",
+      image: "",
       time: "",
       client: "",
       repo: "",
       site: "",
-      tags: ["UI/UX Designer", "Web Developer"],
-      role: ["Reactjs", "html/css/js"],
+      tags: [],
+      role: [],
     },
   });
-  console.log(images, "images");
-  async function onSubmit(data: z.infer<typeof projectSchema>) {
-    data.img = images[0];
-    const req = await addProject(data);
-    req && toast(req.message);
-    form.reset();
-    setImages([]);
+  const handleRemove = async () => {
+    const res = await imageRemove(imageKey);
+    if (res.status === 401) {
+      setImage("");
+      setImageKey("");
+      toast.success("image removed successfully");
+    }
+  };
+  const router = useRouter();
+  async function onSubmit(data: TProject) {
+    try {
+      const res = await addProject(data);
+      if (res?.success) {
+        toast.success(res.success);
+        setImage("");
+        setImageKey("");
+        form.reset();
+        setImage("");
+        router.push("/admin/projects");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
   }
   const handleDelete = (index: number) => {
-    setImages(images?.filter((_, i) => i !== index));
+    // setImage(image?.filter((_, i) => i !== index));
   };
+
   useEffect(() => {
-    form.setValue("img", images[0]);
     const subscription = form.watch((value, { name, type }) =>
       console.log(value, name, type),
     );
     return () => subscription.unsubscribe();
-  }, [form, images]);
+  }, [form, image]);
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 px-4">
@@ -119,7 +145,7 @@ export function Addproject() {
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input placeholder="shadcn" {...field} />
+                  <Input placeholder="title" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -133,7 +159,7 @@ export function Addproject() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Textarea placeholder="shadcn" {...field} />
+                <Textarea placeholder="description" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -141,43 +167,47 @@ export function Addproject() {
         />
         <FormField
           control={form.control}
-          name="img"
+          name="image"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel>Image</FormLabel>
+            <FormItem className="col-span-2">
+              <FormLabel>Choose an Image</FormLabel>
               <FormControl>
-                <Input placeholder="image" {...field} value={images[0]} />
+                <Input type="hidden" placeholder="Image" {...field} />
               </FormControl>
-              {images.length > 0 ? (
-                <div className="flex gap-5">
-                  {images?.map((image, index) => (
-                    <div key={index} className="relative size-[100px]">
-                      <Image
-                        height={100}
-                        width={100}
-                        src={image}
-                        alt="Product Image"
-                        className="size-full rounded-lg border object-cover"
-                      />
-
-                      <Button
-                        onClick={() => handleDelete(index)}
-                        type="button"
-                        className="absolute -right-3 -top-3 rounded-lg bg-red-500 p-2 text-white"
-                      >
-                        <XIcon className="size-3" />
-                      </Button>
-                    </div>
-                  ))}
+              {image ? (
+                <div className="relative rounded border">
+                  <Image
+                    src={image}
+                    alt="img"
+                    height={400}
+                    width={400}
+                    className="object-contain"
+                  />
+                  <Button
+                    className="absolute right-0 top-0"
+                    onClick={() => handleRemove()}
+                    type="button"
+                    size="icon"
+                    variant="ghost"
+                  >
+                    <X />
+                  </Button>
                 </div>
               ) : (
                 <UploadDropzone
                   endpoint="imageUploader"
+                  className="w-full gap-x-2 rounded p-4 text-green-900"
                   onClientUploadComplete={(res) => {
-                    setImages(res.map((r) => r.url));
+                    // Do something with the response
+                    console.log("Files: ", res);
+                    setImage(res[0].url);
+                    setImageKey(res[0].key);
+                    form.setValue("image", res[0].url);
+                    toast.success("Upload Completed" + res[0].url);
                   }}
-                  onUploadError={() => {
-                    alert("Something went wrong");
+                  onUploadError={(error: Error) => {
+                    // Do something with the error.
+                    toast.error(`ERROR! ${error.message}`);
                   }}
                 />
               )}
@@ -192,7 +222,7 @@ export function Addproject() {
             <FormItem>
               <FormLabel>Github repo</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="repo" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -205,7 +235,7 @@ export function Addproject() {
             <FormItem>
               <FormLabel>Live site</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="site" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -218,7 +248,7 @@ export function Addproject() {
             <FormItem>
               <FormLabel>Time</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="time" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -231,7 +261,7 @@ export function Addproject() {
             <FormItem>
               <FormLabel>Client</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="client" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -329,7 +359,35 @@ export function Addproject() {
             )}
           />
         </div>
-        <Button type="submit">Submit</Button>
+        {project ? (
+          <Button disabled={loading} className="max-w-[150px]">
+            {loading ? (
+              <Fragment>
+                <Loader2 className="mr-2 size-4" />
+                Updating
+              </Fragment>
+            ) : (
+              <Fragment>
+                <PencilLine className="size-4" />
+                Update
+              </Fragment>
+            )}
+          </Button>
+        ) : (
+          <Button className="max-w-[150px]" disabled={loading}>
+            {loading ? (
+              <Fragment>
+                <Loader2 className="size-4" />
+                Creating
+              </Fragment>
+            ) : (
+              <Fragment>
+                <PencilLine className="size-4" />
+                Create Project
+              </Fragment>
+            )}
+          </Button>
+        )}
       </form>
     </Form>
   );

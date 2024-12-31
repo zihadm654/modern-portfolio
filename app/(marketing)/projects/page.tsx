@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Metadata } from "next/types";
-import { getProjects } from "@/actions/getProjects";
-import { Projects } from "@prisma/client";
+import { getProjects } from "@/actions/project";
+import { Project } from "@prisma/client";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import Cards from "@/components/Cards";
@@ -27,7 +27,7 @@ export default async function Page() {
           <h2 className="text-2xl font-bold">Featured Projects</h2>
           <Suspense fallback={<Skeleton />}>
             <div className="grid grid-cols-2 gap-3 py-4 max-md:grid-cols-1">
-              {data?.map((item: Projects) => (
+              {data?.map((item: Project) => (
                 <Cards key={item.id} data={item} />
               ))}
             </div>

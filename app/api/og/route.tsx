@@ -1,35 +1,36 @@
-import { ImageResponse } from "@vercel/og";
+import { ImageResponse } from "@vercel/og"
 
-import { ogImageSchema } from "@/lib/validations/og";
+import { ogImageSchema } from "@/lib/validations/og"
 
-export const runtime = "edge";
+export const runtime = "edge"
 
 const interRegular = fetch(
-  new URL("../../../assets/fonts/Inter-Regular.ttf", import.meta.url),
-).then((res) => res.arrayBuffer());
+  new URL("../../../assets/fonts/Inter-Regular.ttf", import.meta.url)
+).then((res) => res.arrayBuffer())
 
 const interBold = fetch(
-  new URL("../../../assets/fonts/CalSans-SemiBold.ttf", import.meta.url),
-).then((res) => res.arrayBuffer());
+  new URL("../../../assets/fonts/CalSans-SemiBold.ttf", import.meta.url)
+).then((res) => res.arrayBuffer())
+
 
 export async function GET(req: Request) {
   try {
-    const fontRegular = await interRegular;
-    const fontBold = await interBold;
+    const fontRegular = await interRegular
+    const fontBold = await interBold
 
-    const url = new URL(req.url);
-    const values = ogImageSchema.parse(Object.fromEntries(url.searchParams));
+    const url = new URL(req.url)
+    const values = ogImageSchema.parse(Object.fromEntries(url.searchParams))
     const heading =
       values.heading.length > 80
         ? `${values.heading.substring(0, 100)}...`
-        : values.heading;
+        : values.heading
 
-    const { mode } = values;
-    const paint = mode === "dark" ? "#fff" : "#000";
+    const { mode } = values
+    const paint = mode === "dark" ? "#fff" : "#000"
 
-    const fontSize = heading.length > 80 ? "60px" : "80px";
+    const fontSize = heading.length > 80 ? "60px" : "80px"
 
-    const githubName = "zihadm654";
+    const githubName = "mickasmt";
 
     return new ImageResponse(
       (
@@ -50,11 +51,11 @@ export async function GET(req: Request) {
               fontWeight: "normal",
               position: "relative",
               background: "linear-gradient(90deg, #6366f1, #a855f7 80%)",
-              backgroundClip: "text",
-              color: "transparent",
+              backgroundClip: 'text',
+              color: 'transparent'
             }}
           >
-            Abdul Malek
+            SaaS Starter
           </div>
 
           <div tw="flex flex-col flex-1 py-16">
@@ -95,7 +96,10 @@ export async function GET(req: Request) {
               />
 
               <div tw="flex flex-col" style={{ marginLeft: "15px" }}>
-                <div tw="text-[22px]" style={{ fontFamily: "Cal Sans" }}>
+                <div
+                  tw="text-[22px]"
+                  style={{ fontFamily: "Cal Sans" }}
+                >
                   {githubName}
                 </div>
                 <div>Open Source Designer</div>
@@ -122,9 +126,7 @@ export async function GET(req: Request) {
                   stroke-linejoin="round"
                 />
               </svg>
-              <div tw="flex ml-2">
-                github.com/zihadm654/next-saas-stripe-starter
-              </div>
+              <div tw="flex ml-2">github.com/mickasmt/next-saas-stripe-starter</div>
             </div>
           </div>
         </div>
@@ -146,11 +148,11 @@ export async function GET(req: Request) {
             style: "normal",
           },
         ],
-      },
-    );
+      }
+    )
   } catch (error) {
     return new Response(`Failed to generate image`, {
       status: 500,
-    });
+    })
   }
 }

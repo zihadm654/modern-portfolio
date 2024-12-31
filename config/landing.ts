@@ -1,11 +1,11 @@
-import { InfoLdg } from "types";
+import { FeatureLdg, InfoLdg, TestimonialType } from "types";
 
 export const infos: InfoLdg[] = [
   {
     title: "Empower your projects",
     description:
       "Unlock the full potential of your projects with our open-source SaaS platform. Collaborate seamlessly, innovate effortlessly, and scale limitlessly.",
-    image: "/images/work-from-home.jpg",
+    image: "/_static/illustrations/work-from-home.jpg",
     list: [
       {
         title: "Collaborative",
@@ -29,7 +29,7 @@ export const infos: InfoLdg[] = [
     title: "Seamless Integration",
     description:
       "Integrate our open-source SaaS seamlessly into your existing workflows. Effortlessly connect with your favorite tools and services for a streamlined experience.",
-    image: "/images/work-from-home.jpg",
+    image: "/_static/illustrations/work-from-home.jpg",
     list: [
       {
         title: "Flexible",
@@ -52,45 +52,52 @@ export const infos: InfoLdg[] = [
   },
 ];
 
-export const features = [
+export const features: FeatureLdg[] = [
   {
-    title: "Web App development",
+    title: "Feature 1",
     description:
-      "We'll build you a website that's so good, it'll make all the other websites jealous. Trust me, not kidding.",
+      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
     link: "/",
+    icon: "nextjs",
   },
   {
-    title: "We Design",
+    title: "Feature 2",
     description:
-      "Your website will be so beautiful, you'll want to frame it and hang it on your wall (but please don't).",
+      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
     link: "/",
+    icon: "google",
   },
   {
-    title: "Developments and Hosting",
+    title: "Feature 3",
     description:
-      "Get your website out there in the world, where it belongs, with our lightning-fast deployment services.",
+      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
     link: "/",
+    icon: "gitHub",
   },
   {
-    title: "Maintencence",
+    title: "Feature 4",
     description:
-      "We keep your website running like a well-oiled machine. From optimizing performance to ensuring security, we've got you covered.",
+      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
     link: "/",
+    icon: "laptop",
   },
   {
-    title: "Full-Stack Development",
+    title: "Feature 5",
     description:
-      "Take your website to the next level with our full-stack development services. We've got all the skills to make your vision a reality.",
+      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+    link: "/",
+    icon: "user",
   },
   {
-    title: "And everything else",
+    title: "Feature 6",
     description:
-      "Ecommerce, Landing pages, Back-end heavy, Dashboards. You name it, we've done it AND we'll do it for you.",
+      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
     link: "/",
+    icon: "copy",
   },
 ];
 
-export const testimonials = [
+export const testimonials: TestimonialType[] = [
   {
     name: "John Doe",
     job: "Full Stack Developer",

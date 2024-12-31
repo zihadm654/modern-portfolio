@@ -3,30 +3,6 @@ import type { Icon } from "lucide-react";
 
 import { Icons } from "@/components/shared/icons";
 
-export type NavItem = {
-  title: string;
-  href: string;
-  disabled?: boolean;
-};
-
-export type MainNavItem = NavItem;
-
-export type SidebarNavItem = {
-  title: string;
-  disabled?: boolean;
-  external?: boolean;
-  icon?: keyof typeof Icons;
-} & (
-  | {
-      href: string;
-      items?: never;
-    }
-  | {
-      href?: string;
-      items: NavLink[];
-    }
-);
-
 export type SiteConfig = {
   name: string;
   description: string;
@@ -34,10 +10,32 @@ export type SiteConfig = {
   ogImage: string;
   mailSupport: string;
   links: {
-    linkedin: string;
     twitter: string;
     github: string;
   };
+};
+
+export type NavItem = {
+  title: string;
+  href: string;
+  badge?: number;
+  disabled?: boolean;
+  external?: boolean;
+  authorizeOnly?: UserRole;
+  icon?: keyof typeof Icons;
+};
+
+export type MainNavItem = NavItem;
+
+export type MarketingConfig = {
+  mainNav: MainNavItem[];
+};
+
+export type SidebarNavItem = {
+  title: string;
+  items: NavItem[];
+  authorizeOnly?: UserRole;
+  icon?: keyof typeof Icons;
 };
 
 export type DocsConfig = {
@@ -45,15 +43,7 @@ export type DocsConfig = {
   sidebarNav: SidebarNavItem[];
 };
 
-export type MarketingConfig = {
-  mainNav: MainNavItem[];
-};
-
-export type DashboardConfig = {
-  mainNav: MainNavItem[];
-  sidebarNav: SidebarNavItem[];
-};
-
+// subcriptions
 export type SubscriptionPlan = {
   title: string;
   description: string;
@@ -77,6 +67,13 @@ export type UserSubscriptionPlan = SubscriptionPlan &
     isCanceled?: boolean;
   };
 
+// compare plans
+export type ColumnType = string | boolean | null;
+export type PlansRow = { feature: string; tooltip?: string } & {
+  [key in (typeof plansColumns)[number]]: ColumnType;
+};
+
+// landing sections
 export type InfoList = {
   icon: keyof typeof Icons;
   title: string;
@@ -90,8 +87,16 @@ export type InfoLdg = {
   list: InfoList[];
 };
 
-// compare plans
-export type ColumnType = string | boolean | null;
-export type PlansRow = { feature: string; tooltip?: string } & {
-  [key in (typeof plansColumns)[number]]: ColumnType;
+export type FeatureLdg = {
+  title: string;
+  description: string;
+  link: string;
+  icon: keyof typeof Icons;
+};
+
+export type TestimonialType = {
+  name: string;
+  job: string;
+  image: string;
+  review: string;
 };

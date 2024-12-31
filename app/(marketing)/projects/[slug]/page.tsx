@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getProject } from "@/actions/getProjects";
+import { getProject } from "@/actions/project";
 import { SiGithub } from "react-icons/si";
 import { VscLiveShare } from "react-icons/vsc";
 
@@ -18,16 +18,16 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <MaxWidthWrapper>
       <section className="py-4">
-        {data.img && (
+        {data.image && (
           <AspectRatio ratio={16 / 9}>
             <Image
-              src={data.img}
+              src={data.image}
               alt={data.title}
               fill
               placeholder="blur"
               sizes="(min-width: 808px) 50vw, 100vw"
               style={{ objectFit: "cover" }}
-              blurDataURL={data.img}
+              blurDataURL={data.image}
             />
           </AspectRatio>
         )}
@@ -95,13 +95,13 @@ export async function generateMetadata({
       description: product.description,
       images: [
         {
-          url: product.img!,
+          url: product.image!,
           width: "600",
           height: "400",
           alt: product.title,
         },
         {
-          url: product.img!,
+          url: product.image!,
           width: "800",
           height: "600",
           alt: product.title,
