@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import { withUt } from "uploadthing/tw";
 
 const { fontFamily } = require("tailwindcss/defaultTheme");
 
@@ -18,7 +17,7 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: ".625rem",
+      padding: ".8rem",
     },
     extend: {
       colors: {
@@ -65,6 +64,7 @@ const config = {
         sans: ["var(--font-sans)", ...fontFamily.sans],
         urban: ["var(--font-urban)", ...fontFamily.sans],
         heading: ["var(--font-heading)", ...fontFamily.sans],
+        geist: ["var(--font-geist)", ...fontFamily.sans],
       },
       keyframes: {
         "accordion-down": {
@@ -143,4 +143,4 @@ const config = {
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;
 
-export default withUt(config);
+export default config;
