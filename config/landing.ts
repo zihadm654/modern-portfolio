@@ -2,9 +2,9 @@ import { FeatureLdg, InfoLdg, TestimonialType } from "types";
 
 export const infos: InfoLdg[] = [
   {
-    title: "Empower your projects",
+    title: "Empower your business",
     description:
-      "Unlock the full potential of your projects with our open-source SaaS platform. Collaborate seamlessly, innovate effortlessly, and scale limitlessly.",
+      "Unlock the full potential of your business with our SaaS. Collaborate seamlessly, innovate effortlessly, and scale limitlessly.",
     image: "/_static/illustrations/work-from-home.jpg",
     list: [
       {
@@ -20,7 +20,7 @@ export const infos: InfoLdg[] = [
       {
         title: "Scalable",
         description:
-          "Our platform offers the scalability needed to adapt to your needs.",
+          "Our saas offers the scalability needed to adapt to your needs.",
         icon: "search",
       },
     ],
@@ -56,42 +56,41 @@ export const features: FeatureLdg[] = [
   {
     title: "Feature 1",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+      "We use Nextjs as a framework to build our SaaS. It provides a robust foundation for building modern web applications.",
     link: "/",
     icon: "nextjs",
   },
   {
     title: "Feature 2",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+      "Google analytics is a powerful tool that helps us track and analyze user behavior on our website.",
     link: "/",
     icon: "google",
   },
   {
     title: "Feature 3",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+      "We use github to host our code and collaborate with our team members.",
     link: "/",
     icon: "gitHub",
   },
   {
     title: "Feature 4",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+      "We use tailwindcss to style our website. It provides a powerful and flexible way to style our website.",
     link: "/",
     icon: "laptop",
   },
   {
     title: "Feature 5",
     description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+      "NextAuth is a powerful authentication library that helps us manage user authentication in our application.",
     link: "/",
     icon: "user",
   },
   {
     title: "Feature 6",
-    description:
-      "Amet praesentium deserunt ex commodi tempore fuga voluptatem. Sit, sapiente.",
+    description: "Any refers website we will built it for you.",
     link: "/",
     icon: "copy",
   },

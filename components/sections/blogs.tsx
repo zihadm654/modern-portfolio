@@ -15,7 +15,7 @@ const Blogs = () => {
     });
   return (
     <MaxWidthWrapper>
-      <section className="py-3">
+      <section className="py-8">
         <h2 className="mb-4 font-heading text-3xl">Blog Posts</h2>
         <div className="grid grid-cols-1 gap-4">
           {posts.slice(1).map((post) => (

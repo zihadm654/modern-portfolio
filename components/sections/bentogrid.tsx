@@ -93,8 +93,8 @@ export default function BentoGrid() {
                   Secure by default
                 </h2>
                 <p className="text-muted-foreground">
-                  Provident fugit and vero voluptate. magnam magni doloribus
-                  dolores voluptates a sapiente nisi.
+                  Security is our top priority. We ensure that your data is
+                  secure
                 </p>
               </div>
             </div>
@@ -187,11 +187,11 @@ export default function BentoGrid() {
               </div>
               <div className="relative z-10 mt-8 space-y-1.5 text-center">
                 <h2 className="text-lg font-medium text-foreground">
-                  Faster than light
+                  Higher speed guaranteed
                 </h2>
                 <p className="text-muted-foreground">
-                  Provident fugit vero voluptate. magnam magni doloribus dolores
-                  voluptates inventore nisi.
+                  We use the latest technology to ensure that the performace of
+                  your website is always at its best
                 </p>
               </div>
             </div>
@@ -222,8 +222,8 @@ export default function BentoGrid() {
                     Faster than light
                   </h2>
                   <p className="text-muted-foreground">
-                    Provident fugit vero voluptate. Voluptates a sapiente
-                    inventore nisi.
+                    Website performance is a key factor in user experience and
+                    search engine optimization.
                   </p>
                 </div>
               </div>
@@ -304,11 +304,11 @@ export default function BentoGrid() {
                 </div>
                 <div className="space-y-2">
                   <h2 className="text-lg font-medium text-foreground">
-                    Keep your loved ones safe
+                    Keep your business safe
                   </h2>
                   <p className="text-muted-foreground">
-                    Voluptate. magnam magni doloribus dolores voluptates a
-                    sapiente.
+                    We use the latest technology to ensure that the website is
+                    secure
                   </p>
                 </div>
               </div>

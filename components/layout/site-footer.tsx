@@ -49,7 +49,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
-              mickasmt
+              zihadm654
             </Link>
             . Hosted on{" "}
             <Link
@@ -58,7 +58,16 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
-              Vercel
+              Vercel.
+            </Link>{" "}
+            Inspired by{" "}
+            <Link
+              href="https://github.com/mickasmt"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium underline underline-offset-4"
+            >
+              Mickasmt
             </Link>
             . Illustrations by{" "}
             <Link

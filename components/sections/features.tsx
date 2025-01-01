@@ -14,8 +14,7 @@ export default function Features() {
           <HeaderSection
             label="Features"
             title="Discover all features."
-            subtitle="Harum quae dolore inventore repudiandae? orrupti aut temporibus
-          ariatur."
+            subtitle="We've got everything you need to build your next project."
           />
 
           <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

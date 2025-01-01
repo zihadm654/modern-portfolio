@@ -8,7 +8,7 @@ import MaxWidthWrapper from "../shared/max-width-wrapper";
 import { Skeleton } from "../ui/skeleton";
 
 const ProjectSection = async () => {
-  const data = await getProjects();
+  const data = (await getProjects())?.slice(0, 6);
   return (
     <MaxWidthWrapper>
       <div className="py-4">
