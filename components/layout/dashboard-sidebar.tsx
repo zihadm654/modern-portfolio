@@ -96,19 +96,19 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
               </div>
 
               <nav className="flex flex-1 flex-col gap-8 px-4 pt-4">
-                {links.map(section => (
+                {links.map((section) => (
                   <section
                     key={section.title}
                     className="flex flex-col gap-0.5"
                   >
                     {isSidebarExpanded ? (
-                      <p className="text-muted-foreground text-xs">
+                      <p className="text-xs text-muted-foreground">
                         {section.title}
                       </p>
                     ) : (
                       <div className="h-4" />
                     )}
-                    {section.items.map(item => {
+                    {section.items.map((item) => {
                       const Icon = Icons[item.icon || "arrowRight"];
                       return (
                         item.href && (
@@ -118,12 +118,12 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
                                 key={`link-${item.title}`}
                                 href={item.disabled ? "#" : item.href}
                                 className={cn(
-                                  "hover:bg-muted flex items-center gap-3 rounded-md p-2 text-sm font-medium",
+                                  "flex items-center gap-3 rounded-md p-2 text-sm font-medium hover:bg-muted",
                                   path === item.href
                                     ? "bg-muted"
                                     : "text-muted-foreground hover:text-accent-foreground",
                                   item.disabled &&
-                                    "hover:text-muted-foreground cursor-not-allowed opacity-80 hover:bg-transparent",
+                                    "cursor-not-allowed opacity-80 hover:bg-transparent hover:text-muted-foreground",
                                 )}
                               >
                                 <Icon className="size-5" />
@@ -141,12 +141,12 @@ export function DashboardSidebar({ links }: DashboardSidebarProps) {
                                     key={`link-tooltip-${item.title}`}
                                     href={item.disabled ? "#" : item.href}
                                     className={cn(
-                                      "hover:bg-muted flex items-center gap-3 rounded-md py-2 text-sm font-medium",
+                                      "flex items-center gap-3 rounded-md py-2 text-sm font-medium hover:bg-muted",
                                       path === item.href
                                         ? "bg-muted"
                                         : "text-muted-foreground hover:text-accent-foreground",
                                       item.disabled &&
-                                        "hover:text-muted-foreground cursor-not-allowed opacity-80 hover:bg-transparent",
+                                        "cursor-not-allowed opacity-80 hover:bg-transparent hover:text-muted-foreground",
                                     )}
                                   >
                                     <span className="flex size-full items-center justify-center">
@@ -212,16 +212,16 @@ export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
 
                 <ProjectSwitcher large />
 
-                {links.map(section => (
+                {links.map((section) => (
                   <section
                     key={section.title}
                     className="flex flex-col gap-0.5"
                   >
-                    <p className="text-muted-foreground text-xs">
+                    <p className="text-xs text-muted-foreground">
                       {section.title}
                     </p>
 
-                    {section.items.map(item => {
+                    {section.items.map((item) => {
                       const Icon = Icons[item.icon || "arrowRight"];
                       return (
                         item.href && (
@@ -233,12 +233,12 @@ export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
                               }}
                               href={item.disabled ? "#" : item.href}
                               className={cn(
-                                "hover:bg-muted flex items-center gap-3 rounded-md p-2 text-sm font-medium",
+                                "flex items-center gap-3 rounded-md p-2 text-sm font-medium hover:bg-muted",
                                 path === item.href
                                   ? "bg-muted"
                                   : "text-muted-foreground hover:text-accent-foreground",
                                 item.disabled &&
-                                  "hover:text-muted-foreground cursor-not-allowed opacity-80 hover:bg-transparent",
+                                  "cursor-not-allowed opacity-80 hover:bg-transparent hover:text-muted-foreground",
                               )}
                             >
                               <Icon className="size-5" />
@@ -256,9 +256,9 @@ export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
                   </section>
                 ))}
 
-                <div className="mt-auto">
+                {/* <div className="mt-auto">
                   <UpgradeCard />
-                </div>
+                </div> */}
               </nav>
             </div>
           </ScrollArea>
@@ -268,6 +268,6 @@ export function MobileSheetSidebar({ links }: DashboardSidebarProps) {
   }
 
   return (
-    <div className="bg-muted flex size-9 animate-pulse rounded-lg md:hidden" />
+    <div className="flex size-9 animate-pulse rounded-lg bg-muted md:hidden" />
   );
 }

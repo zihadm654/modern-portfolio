@@ -13,7 +13,7 @@ const AboutPage = () => {
   return (
     <MaxWidthWrapper>
       <section className="">
-        <div className="px-16 py-4 text-center">
+        <div className="px-16 py-4 text-center max-md:p-4">
           <h4 className="mb-3 pb-2 text-2xl font-semibold">
             A FEW WORDS ABOUT ME
           </h4>
@@ -61,7 +61,7 @@ const AboutPage = () => {
             ]}
           />
         </div>
-        <div className="mb-4 px-16 py-5 text-center">
+        <div className="mb-4 px-16 py-5 text-center max-md:p-5">
           <h5 className="pb-4 text-2xl font-semibold">EXPERIENCE</h5>
           <h3 className="text-xl font-semibold">Over 3 years of experience</h3>
           <p>
