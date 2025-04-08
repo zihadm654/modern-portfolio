@@ -113,7 +113,7 @@ export default async function PostPage({
         <MaxWidthWrapper className="grid grid-cols-4 gap-10 pt-8 max-md:px-0">
           <div className="relative col-span-4 mb-10 flex flex-col space-y-8 bg-background sm:border md:rounded-xl lg:col-span-3">
             <Image
-              className="aspect-[1200/630] border-b object-cover md:rounded-t-xl"
+              className="aspect-1200/630 border-b object-cover md:rounded-t-xl"
               src={post.image}
               width={1200}
               height={630}
