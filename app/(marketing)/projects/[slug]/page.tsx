@@ -45,7 +45,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <div className="flex items-center justify-start gap-3">
               <h5 className="py-3">Roles Played: </h5>
               <p>
-                {data.role?.map((i) => (
+                {data.role?.map(i => (
                   <Button key={i} variant={"outline"} className="mr-1">
                     {i}
                   </Button>

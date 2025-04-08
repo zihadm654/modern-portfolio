@@ -10,9 +10,9 @@ export default function NotFound() {
         alt="404"
         width={400}
         height={400}
-        className="pointer-events-none mb-5 mt-6 dark:invert"
+        className="pointer-events-none mt-6 mb-5 dark:invert"
       />
-      <p className="text-balance px-4 text-center text-2xl font-medium">
+      <p className="px-4 text-center text-2xl font-medium text-balance">
         Page not found. Back to{" "}
         <Link
           href="/"

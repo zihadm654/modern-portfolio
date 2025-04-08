@@ -51,24 +51,24 @@ export function BlogCard({
         )}
       >
         <div className="w-full">
-          <h2 className="my-1.5 line-clamp-2 font-heading text-2xl">
+          <h2 className="font-heading my-1.5 line-clamp-2 text-2xl">
             {data.title}
           </h2>
           {data.description && (
-            <p className="line-clamp-2 text-muted-foreground">
+            <p className="text-muted-foreground line-clamp-2">
               {data.description}
             </p>
           )}
         </div>
         <div className="mt-4 flex items-center space-x-3">
           <div className="flex items-center -space-x-2">
-            {data.authors.map((author) => (
+            {data.authors.map(author => (
               <Author username={author} key={data._id + author} imageOnly />
             ))}
           </div>
 
           {data.date && (
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               {formatDate(data.date)}
             </p>
           )}

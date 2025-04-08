@@ -33,7 +33,7 @@ export function DeleteAccountSection() {
                 </div>
               ) : null}
             </div>
-            <div className="text-balance text-sm text-muted-foreground">
+            <div className="text-muted-foreground text-sm text-balance">
               Permanently delete your {siteConfig.name} account
               {userPaidPlan ? " and your subscription" : ""}. This action cannot
               be undone - please proceed with caution.

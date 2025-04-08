@@ -9,7 +9,7 @@ export default function Loading() {
         <section className="flex flex-col items-center">
           <div className="mx-auto flex w-full flex-col items-center gap-5">
             <HeaderSection label="Pricing" title="Start at full speed !" />
-            <Skeleton className="mb-3 mt-5 h-8 w-1/5 rounded-full" />
+            <Skeleton className="mt-5 mb-3 h-8 w-1/5 rounded-full" />
           </div>
 
           <div className="grid w-full gap-5 bg-inherit py-5 lg:grid-cols-3">

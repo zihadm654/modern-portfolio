@@ -30,10 +30,10 @@ function DeleteAccountModal({
       headers: {
         "Content-Type": "application/json",
       },
-    }).then(async (res) => {
+    }).then(async res => {
       if (res.status === 200) {
         // delay to allow for the route change to complete
-        await new Promise((resolve) =>
+        await new Promise(resolve =>
           setTimeout(() => {
             signOut({
               callbackUrl: `${window.location.origin}/`,
@@ -63,7 +63,7 @@ function DeleteAccountModal({
           }}
         />
         <h3 className="text-lg font-semibold">Delete Account</h3>
-        <p className="text-center text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-center text-sm">
           <b>Warning:</b> This will permanently delete your account and your
           active subscription!
         </p>
@@ -72,15 +72,15 @@ function DeleteAccountModal({
       </div>
 
       <form
-        onSubmit={async (e) => {
+        onSubmit={async e => {
           e.preventDefault();
           toast.promise(deleteAccount(), {
             loading: "Deleting account...",
             success: "Account deleted successfully!",
-            error: (err) => err,
+            error: err => err,
           });
         }}
-        className="flex flex-col space-y-6 bg-accent px-4 py-8 text-left sm:px-16"
+        className="bg-accent flex flex-col space-y-6 px-4 py-8 text-left sm:px-16"
       >
         <div>
           <label htmlFor="verification" className="block text-sm">
@@ -98,7 +98,7 @@ function DeleteAccountModal({
             required
             autoFocus={false}
             autoComplete="off"
-            className="mt-1 w-full border bg-background"
+            className="bg-background mt-1 w-full border"
           />
         </div>
 

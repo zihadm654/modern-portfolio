@@ -184,7 +184,7 @@ export function Addproject({ project }: AddProjectProps) {
                     className="object-contain"
                   />
                   <Button
-                    className="absolute right-0 top-0"
+                    className="absolute top-0 right-0"
                     onClick={() => handleRemove()}
                     type="button"
                     size="icon"
@@ -197,7 +197,7 @@ export function Addproject({ project }: AddProjectProps) {
                 <UploadDropzone
                   endpoint="imageUploader"
                   className="w-full gap-x-2 rounded p-4 text-green-900"
-                  onClientUploadComplete={(res) => {
+                  onClientUploadComplete={res => {
                     // Do something with the response
                     console.log("Files: ", res);
                     setImage(res[0].url);
@@ -276,7 +276,7 @@ export function Addproject({ project }: AddProjectProps) {
                 <div className="mb-4">
                   <FormLabel className="text-base">Roles</FormLabel>
                 </div>
-                {roles?.map((item) => (
+                {roles?.map(item => (
                   <FormField
                     key={item.id}
                     control={form.control}
@@ -285,17 +285,17 @@ export function Addproject({ project }: AddProjectProps) {
                       return (
                         <FormItem
                           key={item.id}
-                          className="flex flex-row items-start space-x-3 space-y-0"
+                          className="flex flex-row items-start space-y-0 space-x-3"
                         >
                           <FormControl>
                             <Checkbox
                               checked={field.value?.includes(item.id)}
-                              onCheckedChange={(checked) => {
+                              onCheckedChange={checked => {
                                 return checked
                                   ? field.onChange([...field.value, item.id])
                                   : field.onChange(
                                       field.value?.filter(
-                                        (value) => value !== item.id,
+                                        value => value !== item.id,
                                       ),
                                     );
                               }}
@@ -321,7 +321,7 @@ export function Addproject({ project }: AddProjectProps) {
                 <div className="mb-4">
                   <FormLabel className="text-base">Tags</FormLabel>
                 </div>
-                {tags?.map((item) => (
+                {tags?.map(item => (
                   <FormField
                     key={item.id}
                     control={form.control}
@@ -330,17 +330,17 @@ export function Addproject({ project }: AddProjectProps) {
                       return (
                         <FormItem
                           key={item.id}
-                          className="flex flex-row items-start space-x-3 space-y-0"
+                          className="flex flex-row items-start space-y-0 space-x-3"
                         >
                           <FormControl>
                             <Checkbox
                               checked={field.value?.includes(item.id)}
-                              onCheckedChange={(checked) => {
+                              onCheckedChange={checked => {
                                 return checked
                                   ? field.onChange([...field.value, item.id])
                                   : field.onChange(
                                       field.value?.filter(
-                                        (value) => value !== item.id,
+                                        value => value !== item.id,
                                       ),
                                     );
                               }}

@@ -42,10 +42,10 @@ export default async function Author({
         className="size-8 rounded-full transition-all group-hover:brightness-90 md:size-10"
       />
       <div className="flex flex-col -space-y-0.5">
-        <p className="font-semibold text-foreground max-md:text-sm">
+        <p className="text-foreground font-semibold max-md:text-sm">
           {authors[username].name}
         </p>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           @{authors[username].twitter}
         </p>
       </div>

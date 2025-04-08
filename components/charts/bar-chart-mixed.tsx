@@ -75,7 +75,7 @@ export function BarChartMixed() {
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) =>
+              tickFormatter={value =>
                 chartConfig[value as keyof typeof chartConfig]?.label
               }
             />
@@ -88,11 +88,11 @@ export function BarChartMixed() {
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col gap-2 text-pretty text-center text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
+      <CardFooter className="flex-col gap-2 text-center text-sm text-pretty">
+        <div className="flex items-center gap-2 leading-none font-medium">
           Trending up by 5.2% this month <TrendingUp className="size-4" />
         </div>
-        <div className="leading-none text-muted-foreground">
+        <div className="text-muted-foreground leading-none">
           Results for the top 5 browsers
         </div>
       </CardFooter>

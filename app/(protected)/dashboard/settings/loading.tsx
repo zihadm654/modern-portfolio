@@ -8,7 +8,7 @@ export default function DashboardSettingsLoading() {
         heading="Settings"
         text="Manage account and website settings."
       />
-      <div className="divide-y divide-muted pb-10">
+      <div className="divide-muted divide-y pb-10">
         <SkeletonSection />
         <SkeletonSection />
         <SkeletonSection card />

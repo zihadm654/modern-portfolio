@@ -71,10 +71,7 @@ const components = {
     />
   ),
   p: ({ className, ...props }) => (
-    <p
-      className={cn("leading-7 not-first:mt-6", className)}
-      {...props}
-    />
+    <p className={cn("leading-7 not-first:mt-6", className)} {...props} />
   ),
   ul: ({ className, ...props }) => (
     <ul className={cn("my-6 ml-6 list-disc", className)} {...props} />
@@ -88,7 +85,7 @@ const components = {
   blockquote: ({ className, ...props }) => (
     <blockquote
       className={cn(
-        "mt-6 border-l-2 pl-6 italic *:text-muted-foreground",
+        "*:text-muted-foreground mt-6 border-l-2 pl-6 italic",
         className,
       )}
       {...props}
@@ -110,7 +107,7 @@ const components = {
   ),
   tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
     <tr
-      className={cn("m-0 border-t p-0 even:bg-muted", className)}
+      className={cn("even:bg-muted m-0 border-t p-0", className)}
       {...props}
     />
   ),
@@ -149,8 +146,8 @@ const components = {
         <CopyButton
           value={__rawString__}
           className={cn(
-            "absolute right-4 top-4 z-20",
-            "duration-250 opacity-0 transition-all group-hover:opacity-100",
+            "absolute top-4 right-4 z-20",
+            "opacity-0 transition-all duration-250 group-hover:opacity-100",
           )}
         />
       )}
@@ -159,7 +156,7 @@ const components = {
   code: ({ className, ...props }) => (
     <code
       className={cn(
-        "relative rounded-md border bg-muted px-[0.4rem] py-1 font-mono text-sm text-foreground",
+        "bg-muted text-foreground relative rounded-md border px-[0.4rem] py-1 font-mono text-sm",
         className,
       )}
       {...props}
@@ -170,7 +167,7 @@ const components = {
   Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
     <h3
       className={cn(
-        "mt-8 scroll-m-20 font-heading text-xl font-semibold tracking-tight",
+        "font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
         className,
       )}
       {...props}
@@ -191,7 +188,7 @@ const components = {
   LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
     <Link
       className={cn(
-        "flex w-full flex-col items-center rounded-xl border bg-card p-6 text-card-foreground shadow-sm transition-colors hover:bg-muted/50 sm:p-10",
+        "bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow-sm transition-colors sm:p-10",
         className,
       )}
       {...props}
@@ -210,7 +207,7 @@ export function Mdx({ code, images }: MdxProps) {
   const MDXImage = (props: any) => {
     if (!images) return null;
     const blurDataURL = images.find(
-      (image) => image.src === props.src,
+      image => image.src === props.src,
     )?.blurDataURL;
 
     return (

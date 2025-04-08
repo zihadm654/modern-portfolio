@@ -25,7 +25,7 @@ export function UserNameForm({ user }: UserNameFormProps) {
   const [isPending, startTransition] = useTransition();
   const updateUserNameWithId = updateUserName.bind(null, user.id);
 
-  const checkUpdate = (value) => {
+  const checkUpdate = value => {
     setUpdated(user.name !== value);
   };
 
@@ -40,7 +40,7 @@ export function UserNameForm({ user }: UserNameFormProps) {
     },
   });
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(data => {
     startTransition(async () => {
       const { status } = await updateUserNameWithId(data);
 
@@ -71,7 +71,7 @@ export function UserNameForm({ user }: UserNameFormProps) {
             className="flex-1"
             size={32}
             {...register("name")}
-            onChange={(e) => checkUpdate(e.target.value)}
+            onChange={e => checkUpdate(e.target.value)}
           />
           <Button
             type="submit"
@@ -95,7 +95,7 @@ export function UserNameForm({ user }: UserNameFormProps) {
               {errors.name.message}
             </p>
           )}
-          <p className="text-[13px] text-muted-foreground">Max 32 characters</p>
+          <p className="text-muted-foreground text-[13px]">Max 32 characters</p>
         </div>
       </SectionColumns>
     </form>

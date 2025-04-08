@@ -18,7 +18,7 @@ import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 import { DashboardTableOfContents } from "@/components/shared/toc";
 
 export async function generateStaticParams() {
-  return allPosts.map((post) => ({
+  return allPosts.map(post => ({
     slug: post.slugAsParams,
   }));
 }
@@ -28,7 +28,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata | undefined> {
-  const post = allPosts.find((post) => post.slugAsParams === params.slug);
+  const post = allPosts.find(post => post.slugAsParams === params.slug);
   if (!post) {
     return;
   }
@@ -49,20 +49,20 @@ export default async function PostPage({
     slug: string;
   };
 }) {
-  const post = allPosts.find((post) => post.slugAsParams === params.slug);
+  const post = allPosts.find(post => post.slugAsParams === params.slug);
 
   if (!post) {
     notFound();
   }
 
   const category = BLOG_CATEGORIES.find(
-    (category) => category.slug === post.categories[0],
+    category => category.slug === post.categories[0],
   )!;
 
   const relatedArticles =
     (post.related &&
       post.related.map(
-        (slug) => allPosts.find((post) => post.slugAsParams === slug)!,
+        slug => allPosts.find(post => post.slugAsParams === slug)!,
       )) ||
     [];
 
@@ -88,19 +88,19 @@ export default async function PostPage({
             </Link>
             <time
               dateTime={post.date}
-              className="text-sm font-medium text-muted-foreground"
+              className="text-muted-foreground text-sm font-medium"
             >
               {formatDate(post.date)}
             </time>
           </div>
-          <h1 className="font-heading text-3xl text-foreground sm:text-4xl">
+          <h1 className="font-heading text-foreground text-3xl sm:text-4xl">
             {post.title}
           </h1>
-          <p className="text-base text-muted-foreground md:text-lg">
+          <p className="text-muted-foreground text-base md:text-lg">
             {post.description}
           </p>
           <div className="flex flex-nowrap items-center space-x-5 pt-1 md:space-x-8">
-            {post.authors.map((author) => (
+            {post.authors.map(author => (
               <Author username={author} key={post._id + author} />
             ))}
           </div>
@@ -111,7 +111,7 @@ export default async function PostPage({
         <div className="absolute top-52 w-full border-t" />
 
         <MaxWidthWrapper className="grid grid-cols-4 gap-10 pt-8 max-md:px-0">
-          <div className="relative col-span-4 mb-10 flex flex-col space-y-8 bg-background sm:border md:rounded-xl lg:col-span-3">
+          <div className="bg-background relative col-span-4 mb-10 flex flex-col space-y-8 sm:border md:rounded-xl lg:col-span-3">
             <Image
               className="aspect-1200/630 border-b object-cover md:rounded-t-xl"
               src={post.image}
@@ -125,7 +125,7 @@ export default async function PostPage({
             </div>
           </div>
 
-          <div className="sticky top-20 col-span-1 mt-52 hidden flex-col divide-y divide-muted self-start pb-24 lg:flex">
+          <div className="divide-muted sticky top-20 col-span-1 mt-52 hidden flex-col divide-y self-start pb-24 lg:flex">
             <DashboardTableOfContents toc={toc} />
           </div>
         </MaxWidthWrapper>
@@ -134,24 +134,24 @@ export default async function PostPage({
       <MaxWidthWrapper>
         {relatedArticles.length > 0 && (
           <div className="flex flex-col space-y-4 pb-16">
-            <p className="font-heading text-2xl text-foreground">
+            <p className="font-heading text-foreground text-2xl">
               More Articles
             </p>
 
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:gap-6">
-              {relatedArticles.map((post) => (
+              {relatedArticles.map(post => (
                 <Link
                   key={post.slug}
                   href={post.slug}
-                  className="flex flex-col space-y-2 rounded-xl border p-5 transition-colors duration-300 hover:bg-muted/80"
+                  className="hover:bg-muted/80 flex flex-col space-y-2 rounded-xl border p-5 transition-colors duration-300"
                 >
-                  <h3 className="font-heading text-xl text-foreground">
+                  <h3 className="font-heading text-foreground text-xl">
                     {post.title}
                   </h3>
-                  <p className="line-clamp-2 text-[15px] text-muted-foreground">
+                  <p className="text-muted-foreground line-clamp-2 text-[15px]">
                     {post.description}
                   </p>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-muted-foreground text-sm">
                     {formatDate(post.date)}
                   </p>
                 </Link>

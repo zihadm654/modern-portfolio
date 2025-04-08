@@ -15,7 +15,7 @@ export function DocsPageHeader({
 }: DocsPageHeaderProps) {
   return (
     <>
-      <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
+      <div className="text-muted-foreground mb-4 flex items-center space-x-1 text-sm">
         <div className="truncate">Docs</div>
         <Icons.chevronRight className="size-4" />
         <div className="font-medium text-purple-600/95 dark:text-purple-400">
@@ -24,11 +24,11 @@ export function DocsPageHeader({
       </div>
 
       <div className={cn("space-y-2", className)} {...props}>
-        <h1 className="inline-block scroll-m-20 font-heading text-4xl">
+        <h1 className="font-heading inline-block scroll-m-20 text-4xl">
           {heading}
         </h1>
         {text && (
-          <p className="text-balance text-lg text-muted-foreground">{text}</p>
+          <p className="text-muted-foreground text-lg text-balance">{text}</p>
         )}
       </div>
     </>

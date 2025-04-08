@@ -19,7 +19,7 @@ export const getProjects = async () => {
     console.log(err);
   }
 };
-export const getProject = async (id) => {
+export const getProject = async id => {
   try {
     const project = await prisma.project.findUnique({
       where: {
@@ -37,7 +37,7 @@ export const addProject = async (data: TProject) => {
   if (session?.user.role !== "ADMIN") return { message: "unauthorized" };
 
   const result = projectSchema.safeParse(data);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise(resolve => setTimeout(resolve, 1000));
 
   if (result.success) {
     try {
@@ -60,7 +60,7 @@ export const updateProject = async (data: TProject, id: string) => {
   if (session?.user.role !== "ADMIN") return { message: "unauthorized" };
 
   const result = projectSchema.safeParse(data);
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise(resolve => setTimeout(resolve, 1000));
 
   if (result.success) {
     try {

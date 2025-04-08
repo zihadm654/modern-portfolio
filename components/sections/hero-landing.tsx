@@ -74,8 +74,6 @@ export default async function HeroLanding() {
           </Link>
           <Link
             href={"/contact"}
-            target="_blank"
-            rel="noreferrer"
             className={cn(
               buttonVariants({
                 variant: "outline",

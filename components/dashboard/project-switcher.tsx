@@ -56,10 +56,7 @@ export default function ProjectSwitcher({
           >
             <div className="flex items-center space-x-3 pr-2">
               <div
-                className={cn(
-                  "size-3 shrink-0 rounded-full",
-                  selected.color,
-                )}
+                className={cn("size-3 shrink-0 rounded-full", selected.color)}
               />
               <div className="flex items-center space-x-3">
                 <span
@@ -73,7 +70,7 @@ export default function ProjectSwitcher({
               </div>
             </div>
             <ChevronsUpDown
-              className="size-4 text-muted-foreground"
+              className="text-muted-foreground size-4"
               aria-hidden="true"
             />
           </Button>
@@ -106,7 +103,7 @@ function ProjectList({
           key={slug}
           className={cn(
             buttonVariants({ variant: "ghost" }),
-            "relative flex h-9 items-center gap-3 p-3 text-muted-foreground hover:text-foreground",
+            "text-muted-foreground hover:text-foreground relative flex h-9 items-center gap-3 p-3",
           )}
           href="#"
           onClick={() => setOpenPopover(false)}
@@ -115,14 +112,14 @@ function ProjectList({
           <span
             className={`flex-1 truncate text-sm ${
               selected.slug === slug
-                ? "font-medium text-foreground"
+                ? "text-foreground font-medium"
                 : "font-normal"
             }`}
           >
             {slug}
           </span>
           {selected.slug === slug && (
-            <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-foreground">
+            <span className="text-foreground absolute inset-y-0 right-0 flex items-center pr-3">
               <Check size={18} aria-hidden="true" />
             </span>
           )}
@@ -135,7 +132,7 @@ function ProjectList({
           setOpenPopover(false);
         }}
       >
-        <Plus size={18} className="absolute left-2.5 top-2" />
+        <Plus size={18} className="absolute top-2 left-2.5" />
         <span className="flex-1 truncate text-center">New Project</span>
       </Button>
     </div>
@@ -145,7 +142,7 @@ function ProjectList({
 function ProjectSwitcherPlaceholder() {
   return (
     <div className="flex animate-pulse items-center space-x-1.5 rounded-lg px-1.5 py-2 sm:w-60">
-      <div className="h-8 w-36 animate-pulse rounded-md bg-muted xl:w-[180px]" />
+      <div className="bg-muted h-8 w-36 animate-pulse rounded-md xl:w-[180px]" />
     </div>
   );
 }

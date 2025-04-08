@@ -14,7 +14,7 @@ export const metadata = {
 
 export default function GuidesPage() {
   const guides = allGuides
-    .filter((guide) => guide.published)
+    .filter(guide => guide.published)
     .sort((a, b) => {
       return compareDesc(new Date(a.date), new Date(b.date));
     });
@@ -27,13 +27,13 @@ export default function GuidesPage() {
       />
       {guides?.length ? (
         <div className="mt-5 grid gap-4 md:grid-cols-2 md:gap-6">
-          {guides.map((guide) => (
+          {guides.map(guide => (
             <article
               key={guide._id}
               className="group relative rounded-lg border p-6 shadow-md transition-shadow hover:shadow-lg"
             >
               {guide.featured && (
-                <span className="absolute right-4 top-4 rounded-full px-3 py-1 text-xs font-medium">
+                <span className="absolute top-4 right-4 rounded-full px-3 py-1 text-xs font-medium">
                   Featured
                 </span>
               )}
@@ -47,7 +47,7 @@ export default function GuidesPage() {
                   )}
                 </div>
                 {guide.date && (
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-muted-foreground text-sm">
                     {formatDate(guide.date)}
                   </p>
                 )}

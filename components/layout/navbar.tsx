@@ -41,7 +41,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
 
   return (
     <header
-      className={`sticky top-0 z-40 flex w-full justify-center bg-background/60 backdrop-blur-xl transition-all ${
+      className={`bg-background/60 sticky top-0 z-40 flex w-full justify-center backdrop-blur-xl transition-all ${
         scroll ? (scrolled ? "border-b" : "bg-transparent") : "border-b"
       }`}
     >
@@ -65,7 +65,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
                   href={item.disabled ? "#" : item.href}
                   prefetch={true}
                   className={cn(
-                    "flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
+                    "hover:text-foreground/80 flex items-center text-lg font-medium transition-colors sm:text-sm",
                     item.href.startsWith(`/${selectedLayout}`)
                       ? "text-foreground"
                       : "text-foreground/60",
@@ -87,7 +87,7 @@ export function NavBar({ scroll = false }: NavBarProps) {
                 <DocsSearch />
               </div>
               <div className="flex lg:hidden">
-                <Icons.search className="size-6 text-muted-foreground" />
+                <Icons.search className="text-muted-foreground size-6" />
               </div>
               <div className="flex space-x-4">
                 <Link

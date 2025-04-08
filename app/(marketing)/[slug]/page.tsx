@@ -10,7 +10,7 @@ import { Metadata } from "next";
 import { constructMetadata } from "@/lib/utils";
 
 export async function generateStaticParams() {
-  return allPages.map((page) => ({
+  return allPages.map(page => ({
     slug: page.slugAsParams,
   }));
 }
@@ -20,7 +20,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata | undefined> {
-  const page = allPages.find((page) => page.slugAsParams === params.slug);
+  const page = allPages.find(page => page.slugAsParams === params.slug);
   if (!page) {
     return;
   }
@@ -40,7 +40,7 @@ export default async function PagePage({
     slug: string;
   };
 }) {
-  const page = allPages.find((page) => page.slugAsParams === params.slug);
+  const page = allPages.find(page => page.slugAsParams === params.slug);
 
   if (!page) {
     notFound();
@@ -49,11 +49,11 @@ export default async function PagePage({
   return (
     <article className="container max-w-3xl py-6 lg:py-12">
       <div className="space-y-4">
-        <h1 className="inline-block font-heading text-4xl lg:text-5xl">
+        <h1 className="font-heading inline-block text-4xl lg:text-5xl">
           {page.title}
         </h1>
         {page.description && (
-          <p className="text-xl text-muted-foreground">{page.description}</p>
+          <p className="text-muted-foreground text-xl">{page.description}</p>
         )}
       </div>
       <hr className="my-4" />

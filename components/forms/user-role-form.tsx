@@ -95,7 +95,7 @@ export function UserRoleForm({ user }: UserNameFormProps) {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {roles.map((role) => (
+                      {roles.map(role => (
                         <SelectItem key={role} value={role.toString()}>
                           {role}
                         </SelectItem>
@@ -123,7 +123,7 @@ export function UserRoleForm({ user }: UserNameFormProps) {
             </Button>
           </div>
           <div className="flex flex-col justify-between p-1">
-            <p className="text-[13px] text-muted-foreground">
+            <p className="text-muted-foreground text-[13px]">
               Remove this field on real production
             </p>
           </div>

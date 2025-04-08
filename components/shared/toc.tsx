@@ -2,9 +2,9 @@
 
 import * as React from "react";
 
-import { useMounted } from "@/hooks/use-mounted";
 import { TableOfContents } from "@/lib/toc";
 import { cn } from "@/lib/utils";
+import { useMounted } from "@/hooks/use-mounted";
 
 interface TocProps {
   toc: TableOfContents;
@@ -15,10 +15,10 @@ export function DashboardTableOfContents({ toc }: TocProps) {
     () =>
       toc.items
         ? toc.items
-            .flatMap((item) => [item.url, item?.items?.map((item) => item.url)])
+            .flatMap(item => [item.url, item?.items?.map(item => item.url)])
             .flat()
             .filter(Boolean)
-            .map((id) => id?.split("#")[1])
+            .map(id => id?.split("#")[1])
         : [],
     [toc],
   );
@@ -42,8 +42,8 @@ function useActiveItem(itemIds: (string | undefined)[]) {
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             setActiveId(entry.target.id);
           }
@@ -52,7 +52,7 @@ function useActiveItem(itemIds: (string | undefined)[]) {
       { rootMargin: `0% 0% -80% 0%` },
     );
 
-    itemIds?.forEach((id) => {
+    itemIds?.forEach(id => {
       if (!id) {
         return;
       }
@@ -64,7 +64,7 @@ function useActiveItem(itemIds: (string | undefined)[]) {
     });
 
     return () => {
-      itemIds?.forEach((id) => {
+      itemIds?.forEach(id => {
         if (!id) {
           return;
         }
@@ -97,7 +97,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
               className={cn(
                 "inline-block text-sm no-underline",
                 item.url === `#${activeItem}`
-                  ? "font-medium text-primary"
+                  ? "text-primary font-medium"
                   : "text-muted-foreground",
               )}
             >

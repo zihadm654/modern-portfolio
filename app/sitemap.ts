@@ -8,13 +8,13 @@ export default async function sitemap() {
     lastModified: new Date(createdAt).toISOString().split("T")[0],
   }));
 
-  const blogs = allPosts.map((post) => ({
+  const blogs = allPosts.map(post => ({
     url: `https://portfolio-nextjs-zihadm654.vercel.app/${post.slug}`,
     lastModified: post.published,
   }));
 
   const routes = ["/", "/projects", "/about", "/contact", "/blog"].map(
-    (route) => ({
+    route => ({
       url: `https://portfolio-nextjs-zihadm654.vercel.app/${route}`,
       lastModified: new Date().toISOString().split("T")[0],
     }),

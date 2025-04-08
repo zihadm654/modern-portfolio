@@ -7,7 +7,7 @@ import { constructMetadata } from "@/lib/utils";
 import { BlogCard } from "@/components/content/blog-card";
 
 export async function generateStaticParams() {
-  return BLOG_CATEGORIES.map((category) => ({
+  return BLOG_CATEGORIES.map(category => ({
     slug: category.slug,
   }));
 }
@@ -18,7 +18,7 @@ export async function generateMetadata({
   params: { slug: string };
 }): Promise<Metadata | undefined> {
   const category = BLOG_CATEGORIES.find(
-    (category) => category.slug === params.slug,
+    category => category.slug === params.slug,
   );
   if (!category) {
     return;
@@ -39,16 +39,14 @@ export default async function BlogCategory({
     slug: string;
   };
 }) {
-  const data = BLOG_CATEGORIES.find(
-    (category) => category.slug === params.slug,
-  );
+  const data = BLOG_CATEGORIES.find(category => category.slug === params.slug);
 
   if (!data) {
     notFound();
   }
 
   const articles = allPosts
-    .filter((post) => post.categories?.includes(data.slug))
+    .filter(post => post.categories?.includes(data.slug))
     .sort((a, b) => b.date.localeCompare(a.date));
 
   return (
