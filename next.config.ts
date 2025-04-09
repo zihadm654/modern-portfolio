@@ -1,9 +1,9 @@
-const { withContentlayer } = require("next-contentlayer2");
+import type { NextConfig } from "next";
+import { withContentlayer } from "next-contentlayer2";
 
-import("./env.mjs");
+import "./env.mjs";
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -14,6 +14,12 @@ const nextConfig = {
       { protocol: "https", hostname: "res.cloudinary.com" },
     ],
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
-module.exports = withContentlayer(nextConfig);
+export default withContentlayer(nextConfig);

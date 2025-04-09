@@ -12,15 +12,15 @@ import { visit } from "unist-util-visit";
 const defaultComputedFields: ComputedFields = {
   slug: {
     type: "string",
-    resolve: (doc) => `/${doc._raw.flattenedPath}`,
+    resolve: doc => `/${doc._raw.flattenedPath}`,
   },
   slugAsParams: {
     type: "string",
-    resolve: (doc) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
+    resolve: doc => doc._raw.flattenedPath.split("/").slice(1).join("/"),
   },
   images: {
     type: "list",
-    resolve: (doc) => {
+    resolve: doc => {
       return (
         doc.body.raw.match(/(?<=<Image[^>]*\bsrc=")[^"]+(?="[^>]*\/>)/g) || []
       );
@@ -147,8 +147,8 @@ export default makeSource({
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
       rehypeSlug,
-      () => (tree) => {
-        visit(tree, (node) => {
+      () => tree => {
+        visit(tree, node => {
           if (node?.type === "element" && node?.tagName === "pre") {
             const [codeEl] = node.children;
 
@@ -163,7 +163,7 @@ export default makeSource({
         {
           theme: "github-dark",
           keepBackground: false,
-          onVisitLine(node) {
+          onVisitLine(node: any) {
             // Prevent lines from collapsing in `display: grid` mode, and allow empty lines to be copy/pasted
             if (node.children.length === 0) {
               node.children = [{ type: "text", value: " " }];
@@ -171,8 +171,8 @@ export default makeSource({
           },
         },
       ],
-      () => (tree) => {
-        visit(tree, (node) => {
+      () => tree => {
+        visit(tree, node => {
           if (node?.type === "element" && node?.tagName === "figure") {
             if (!("data-rehype-pretty-code-figure" in node.properties)) {
               return;

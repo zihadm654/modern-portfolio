@@ -2,16 +2,17 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getProject } from "@/actions/project";
-import { SiGithub } from "react-icons/si";
-import { VscLiveShare } from "react-icons/vsc";
 
 import { formatDate } from "@/lib/utils";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const slug = params.slug;
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+export default async function Page({ params }: Props) {
+  const slug = (await params).slug;
   const data = await getProject(slug);
   console.log(data, "data");
   if (!data) return <div>Not found</div>;
@@ -77,13 +78,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
   );
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
-  const { slug } = params;
+  const slug = (await params).slug;
   const product = await getProject(slug);
   console.log(product, "product");
   if (!product) return { title: "Not found" };

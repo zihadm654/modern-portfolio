@@ -17,9 +17,7 @@ description: How to config the authentification.
 
 ## Update auth_secret variable
 
-The only environment variable that is mandatory is the `AUTH_SECRET`. This is a
-random value used by the library to encrypt tokens and email verification
-hashes. You can generate one via running:
+The only environment variable that is mandatory is the `AUTH_SECRET`. This is a random value used by the library to encrypt tokens and email verification hashes. You can generate one via running:
 
 ```bash
 npx auth secret
@@ -27,8 +25,7 @@ npx auth secret
 
 Alternatively, you can use the `openssl` CLI, `openssl rand -base64 33`.
 
-Or this [link](https://generate-secret.vercel.app/32) for generate a random
-secret key.
+Or this [link](https://generate-secret.vercel.app/32) for generate a random secret key.
 
 Then add it to your `.env` file:
 
@@ -47,9 +44,7 @@ GOOGLE_CLIENT_SECRET = your_secret_client;
 
 ### Video explanation
 
-Watch a youtube video from
-[CodeWithAntonio](https://www.youtube.com/@codewithantonio) on how to configure
-the environment variables for NextAuth with Google authentication.
+Watch a youtube video from [CodeWithAntonio](https://www.youtube.com/@codewithantonio) on how to configure the environment variables for NextAuth with Google authentication.
 
 <iframe
   className="mt-6 aspect-video w-full"
@@ -60,10 +55,8 @@ the environment variables for NextAuth with Google authentication.
   allowFullScreen
 ></iframe>
 
-- GoogleAuth **local** config at
-  [3:24:30](https://www.youtube.com/watch?v=1MTyCvS05V4&t=12270s)
-- Update GoogleAuth after **deployment** at
-  [7:52:31](https://www.youtube.com/watch?v=1MTyCvS05V4&t=12270s)
+- GoogleAuth **local** config at [3:24:30](https://www.youtube.com/watch?v=1MTyCvS05V4&t=12270s)
+- Update GoogleAuth after **deployment** at [7:52:31](https://www.youtube.com/watch?v=1MTyCvS05V4&t=12270s)
 
 ### Google config for this repo
 
