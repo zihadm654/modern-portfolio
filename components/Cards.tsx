@@ -28,7 +28,7 @@ const Cards: React.FC<IData> = ({ data }) => {
   if (!data) return null;
   return (
     <Card
-      className="p-2 hover:cursor-pointer"
+      className="p-4 hover:cursor-pointer"
       onClick={() => router.push(`/projects/${data.id}`)}
       key={data.id}
     >
@@ -51,13 +51,13 @@ const Cards: React.FC<IData> = ({ data }) => {
       </CardHeader>
       <CardFooter className="flex flex-col items-start justify-between gap-2">
         <p>
-          {data.role?.map((i) => (
+          {data.role?.map(i => (
             <Button key={i} variant={"outline"} className="mr-1">
               {i}
             </Button>
           ))}
         </p>
-        <div className="flex w-full items-center justify-between gap-2 border-t border-muted">
+        <div className="border-muted flex w-full items-center justify-between gap-2 border-t">
           <div className="-mb-5 flex gap-3 py-4 md:-mb-7">
             <Button variant="secondary" size="sm" rounded="xl" className="px-4">
               <Link

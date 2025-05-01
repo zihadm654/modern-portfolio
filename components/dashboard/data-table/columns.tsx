@@ -15,7 +15,7 @@ export const columns: ColumnDef<Project>[] = [
       <DataTableColumnHeader column={column} title="id" />
     ),
     cell: ({ row }) => (
-      <div className="w-[150px] capitalize">{row.getValue("id")}</div>
+      <div className="max-w-48 truncate capitalize">{row.getValue("id")}</div>
     ),
     enableSorting: false,
     enableHiding: false,
@@ -43,7 +43,7 @@ export const columns: ColumnDef<Project>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium capitalize">
+          <span className="max-w-48 truncate font-medium capitalize">
             {row.getValue("description")}
           </span>
         </div>
@@ -58,7 +58,7 @@ export const columns: ColumnDef<Project>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium capitalize">
+          <span className="max-w-48 truncate font-medium capitalize">
             {row.getValue("client")}
           </span>
         </div>
@@ -73,7 +73,7 @@ export const columns: ColumnDef<Project>[] = [
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
-          <span className="max-w-[500px] truncate font-medium capitalize">
+          <span className="max-w-48 truncate font-medium capitalize">
             {row.getValue("image")}
           </span>
         </div>

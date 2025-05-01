@@ -47,6 +47,7 @@ export const addProject = async (data: TProject) => {
         },
       });
       revalidatePath("/admin/projects");
+      revalidatePath("/projects");
       return { success: "project has been created successfully", res };
     } catch (error) {
       return {
@@ -72,6 +73,8 @@ export const updateProject = async (data: TProject, id: string) => {
           ...result.data,
         },
       });
+      revalidatePath("/projects");
+      revalidatePath("/admin/projects");
       return { success: "project has been updated successfully", res };
     } catch (error) {
       return {
@@ -79,7 +82,6 @@ export const updateProject = async (data: TProject, id: string) => {
       };
     }
   }
-  revalidatePath("/admin/projects");
 };
 export const deleteProject = async (id: string) => {
   const session = await auth();
@@ -92,6 +94,7 @@ export const deleteProject = async (id: string) => {
       },
     });
     revalidatePath("/admin/projects");
+    revalidatePath("/projects");
     return { success: "project has been deleted successfully" };
   } catch (error) {
     return {
